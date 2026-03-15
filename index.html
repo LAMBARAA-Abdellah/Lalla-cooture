@@ -1,186 +1,304 @@
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lalla Cooture — Haute Couture</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&family=Noto+Naskh+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lalla Cooture — Haute Couture Marocaine à Marrakech</title>
+  <meta name="description"
+    content="Lalla Cooture : Maison de Haute Couture à Marrakech. Créations sur mesure, caftans modernes et artisanat marocain d'exception. Prenez rendez-vous dans notre atelier.">
+  <meta name="keywords"
+    content="Haute Couture, Marrakech, Lalla Cooture, Caftan Marocain, Robe de Mariée, Sur Mesure, Mode Marocaine, Artisanat de Luxe">
+  <link rel="canonical" href="https://lalla-cooture.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lalla-cooture.com/">
+  <meta property="og:title" content="Lalla Cooture — Haute Couture Marocaine à Marrakech">
+  <meta property="og:description"
+    content="Découvrez l'élégance du sur-mesure marocain. Haute Couture, Caftans et créations uniques à Marrakech.">
+  <meta property="og:image" content="https://lalla-cooture.com/assets/images/logo.jpeg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://lalla-cooture.com/">
+  <meta property="twitter:title" content="Lalla Cooture — Haute Couture Marocaine à Marrakech">
+  <meta property="twitter:description"
+    content="Découvrez l'élégance du sur-mesure marocain. Haute Couture, Caftans et créations uniques à Marrakech.">
+  <meta property="twitter:image" content="https://lalla-cooture.com/assets/images/logo.jpeg">
+
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&family=Noto+Naskh+Arabic:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="cursor" id="cur"></div>
-<div class="cursor-ring" id="curR"></div>
+  <div class="cursor" id="cur"></div>
+  <div class="cursor-ring" id="curR"></div>
 
-<!-- NAV -->
-<nav>
-  <a href="#home" class="nav-brand">
-    <img src="assets/images/logo.jpeg" alt="Lalla Cooture">
-    <span class="nav-brand-txt"><em>Lalla</em> Cooture</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#home"     data-k="n0">Accueil</a></li>
-    <li><a href="#services" data-k="n1">Services</a></li>
-    <li><a href="#gallery"  data-k="n2">Galerie</a></li>
-    <li><a href="#atelier"  data-k="n3">Atelier</a></li>
-    <li><a href="#contact"  data-k="n4">Contact</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="pill"    onclick="setL('fr')" id="bfr">FR</button>
-    <button class="pill"    onclick="setL('en')" id="ben">EN</button>
-    <button class="pill"    onclick="setL('ar')" id="bar">ع</button>
-    <button class="thm"     onclick="toggleThm()" id="tBtn">☀</button>
-    <button class="hbg"     onclick="togMob()" id="hbgBtn">
-      <span></span><span></span><span></span>
-    </button>
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-brand">
+      <img src="assets/images/logo.jpeg" alt="Lalla Cooture">
+      <span class="nav-brand-txt"><em>Lalla</em> Cooture</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" data-k="n0">Accueil</a></li>
+      <li><a href="#services" data-k="n1">Services</a></li>
+      <li><a href="#gallery" data-k="n2">Galerie</a></li>
+      <li><a href="#atelier" data-k="n3">Atelier</a></li>
+      <li><a href="#contact" data-k="n4">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="pill" onclick="setL('fr')" id="bfr">FR</button>
+      <button class="pill" onclick="setL('en')" id="ben">EN</button>
+      <button class="pill" onclick="setL('ar')" id="bar">ع</button>
+      <button class="thm" onclick="toggleThm()" id="tBtn">☀</button>
+      <button class="hbg" onclick="togMob()" id="hbgBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mob" id="mobM">
+    <a href="#home" onclick="closM()" data-k="n0">Accueil</a>
+    <a href="#services" onclick="closM()" data-k="n1">Services</a>
+    <a href="#gallery" onclick="closM()" data-k="n2">Galerie</a>
+    <a href="#atelier" onclick="closM()" data-k="n3">Atelier</a>
+    <a href="#contact" onclick="closM()" data-k="n4">Contact</a>
   </div>
-</nav>
-<div class="mob" id="mobM">
-  <a href="#home"     onclick="closM()" data-k="n0">Accueil</a>
-  <a href="#services" onclick="closM()" data-k="n1">Services</a>
-  <a href="#gallery"  onclick="closM()" data-k="n2">Galerie</a>
-  <a href="#atelier"  onclick="closM()" data-k="n3">Atelier</a>
-  <a href="#contact"  onclick="closM()" data-k="n4">Contact</a>
-</div>
 
-<!-- HERO -->
-<section id="home">
-  <div class="hl">
-    <p class="htag" data-k="t0">Maison de Couture · Marrakech</p>
-    <h1><span data-k="t1">Lalla</span><em data-k="t2">Cooture</em></h1>
-    <p class="hsub" data-k="t3">Haute Couture Marocaine</p>
-    <p class="hp" data-k="t4">L'art de la couture marocaine réinventé avec grâce. Chaque pièce naît du fil, du geste et de la mémoire.</p>
-    <div class="hact">
-      <a href="#gallery" class="btn btn-dk" data-k="t5">Découvrir</a>
-      <a href="#contact" class="btn btn-lt" data-k="t6">Rendez-vous</a>
+  <!-- HERO -->
+  <section id="home">
+    <div class="hl">
+      <p class="htag" data-k="t0">Maison de Couture · Marrakech</p>
+      <h1><span data-k="t1">Lalla</span><em data-k="t2">Cooture</em></h1>
+      <p class="hsub" data-k="t3">Haute Couture Marocaine</p>
+      <p class="hp" data-k="t4">L'art de la couture marocaine réinventé avec grâce. Chaque pièce naît du fil, du geste
+        et de la mémoire.</p>
+      <div class="hact">
+        <a href="#gallery" class="btn btn-dk" data-k="t5">Découvrir</a>
+        <a href="#contact" class="btn btn-lt" data-k="t6">Rendez-vous</a>
+      </div>
     </div>
-  </div>
-  <div class="hr">
-    <div class="hpanels">
-      <div class="hpanel"><img src="assets/images/image6.jpeg" alt=""></div>
-      <div class="hpanel"><img src="assets/images/image3.jpeg" alt=""></div>
-      <div class="hpanel"><img src="assets/images/image8.jpeg" alt=""></div>
+    <div class="hr">
+      <div class="hpanels">
+        <div class="hpanel"><img src="assets/images/image6.jpeg" alt=""></div>
+        <div class="hpanel"><img src="assets/images/image3.jpeg" alt=""></div>
+        <div class="hpanel"><img src="assets/images/image8.jpeg" alt=""></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- MARQUEE -->
-<div class="mstrip"><div class="mtrack" id="mT"></div></div>
+  <!-- MARQUEE -->
+  <div class="mstrip">
+    <div class="mtrack" id="mT"></div>
+  </div>
 
-<!-- SERVICES -->
-<section id="services" class="sec">
-  <div class="sv-lay">
-    <div class="sv-intro rvl">
-      <p class="stag" data-k="s0">Savoir-Faire</p>
-      <h2 class="stitl" data-k="s1">L'excellence<br>à chaque <em>couture</em></h2>
-      <div class="div"><div class="dline"></div><div class="dgem"></div><div class="dline"></div></div>
-      <p data-k="s2" style="font-family:'Playfair Display',serif;font-style:italic;font-size:16px;line-height:1.9;color:var(--muted);">De la première esquisse à la dernière broderie, chaque création porte l'âme de l'artisanat marocain.</p>
-    </div>
-    <div class="sv-list">
-      <div class="srow rv"><span class="snum">01</span><div class="sbody"><div class="sname"><span data-k="s1n">Modèles Sur Mesure</span><i>✦</i></div><p class="sdesc" data-k="s1d">Chaque silhouette mérite une création pensée pour elle seule — des vêtements qui épousent votre morphologie et votre essence.</p></div></div>
-      <div class="srow rv"><span class="snum">02</span><div class="sbody"><div class="sname"><span data-k="s2n">Stylisme & Design</span><i>◈</i></div><p class="sdesc" data-k="s2d">Un regard créatif qui tisse la tradition marocaine aux courants de la mode internationale contemporaine.</p></div></div>
-      <div class="srow rv"><span class="snum">03</span><div class="sbody"><div class="sname"><span data-k="s3n">Modélisme</span><i>❧</i></div><p class="sdesc" data-k="s3d">La rigueur technique comme fondation de la beauté — des patrons élaborés avec précision pour une coupe parfaite.</p></div></div>
-      <div class="srow rv"><span class="snum">04</span><div class="sbody"><div class="sname"><span data-k="s4n">Confection Haute Couture</span><i>✧</i></div><p class="sdesc" data-k="s4d">Des pièces d'exception entièrement confectionnées à la main, avec les matières les plus nobles et les broderies les plus fines.</p></div></div>
-      <div class="srow rv"><span class="snum">05</span><div class="sbody"><div class="sname"><span data-k="s5n">Croquis de Mode</span><i>✒</i></div><p class="sdesc" data-k="s5d">Des illustrations de mode aux lines délicates qui donnent vie aux idées avant même que le tissu ne soit touché.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery" class="sec">
-  <div class="g-head rv">
-    <div>
-      <p class="stag" data-k="g0">Portfolio</p>
-      <h2 class="stitl" data-k="g1">Nos <em>Créations</em></h2>
-    </div>
-    <div class="g-filters">
-      <button class="flt on" data-f="all"     data-k="f0">Tout</button>
-      <button class="flt"    data-f="couture"  data-k="f1">Couture</button>
-      <button class="flt"    data-f="bridal"   data-k="f2">Mariée</button>
-      <button class="flt"    data-f="sketch"   data-k="f3">Croquis</button>
-    </div>
-  </div>
-  <div class="gmason">
-    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image1.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl1">Broderie Traditionnelle</span></div></div>
-    <div class="gi" data-cat="bridal"  onclick="oLb(this)"><img src="assets/images/image6.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl2">Robe de Mariée</span></div></div>
-    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image3.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl3">Caftan Revisité</span></div></div>
-    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image4.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl4">Collection Sahara</span></div></div>
-    <div class="gi" data-cat="bridal"  onclick="oLb(this)"><img src="assets/images/image8.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl5">Couture de Mariée</span></div></div>
-    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image5.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl6">Luxe Prêt-à-Porter</span></div></div>
-    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image2.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl7">Détail de Couture</span></div></div>
-    <div class="gi" data-cat="sketch"  onclick="oLb(this)"><img src="assets/images/image10.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl8">Croquis Atelier</span></div></div>
-    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image9.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl9">Broderie Sfifa</span></div></div>
-    <div class="gi" data-cat="sketch"  onclick="oLb(this)"><img src="assets/images/image11.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl10">Dessin de Mode</span></div></div>
-  </div>
-</section>
-
-<!-- ATELIER -->
-<section id="atelier">
-  <div class="atimg rvl"><img src="assets/images/image10.jpeg" alt="Atelier Lalla Cooture"></div>
-  <div class="atbody">
-    <p class="stag" data-k="a0">Notre Univers</p>
-    <h2 class="stitl" data-k="a1">L'<em>Atelier</em><br>Lalla Cooture</h2>
-    <div class="div" style="margin:22px 0"><div class="dline"></div><div class="dgem"></div><div class="dline"></div></div>
-    <p class="atp" data-k="a2">Née d'une passion profonde for l'artisanat marocain, Lalla Cooture est un espace de création où héritage et modernité se rencontrent avec élégance.</p>
-    <p class="atp" data-k="a3">Chaque fil raconte une histoire, chaque broderie honore un patrimoine millénaire, sublimé pour la femme d'aujourd'hui.</p>
-    <div class="stats">
-      <div class="stb"><span class="stn">100%</span><span class="stl" data-k="a4">Sur Mesure</span></div>
-      <div class="stb"><span class="stn">✦</span><span class="stl" data-k="a5">Haute Couture</span></div>
-      <div class="stb"><span class="stn">5+</span><span class="stl" data-k="a6">Ans de Création</span></div>
-    </div>
-    <a href="#contact" class="btn btn-dk" style="width:fit-content"><span data-k="a7">Prendre Rendez-vous</span></a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="sec">
-  <div style="text-align:center" class="rv">
-    <p class="stag" style="justify-content:center" data-k="c0">Nous Rejoindre</p>
-    <h2 class="stitl" data-k="c1">Créons <em>Ensemble</em></h2>
-    <div class="div"><div class="dline"></div><div class="dgem"></div><div class="dline"></div></div>
-  </div>
-  <div class="c-wrap">
-    <div class="cl rvl">
-      <h3 data-k="c2">Votre vision,<br><em>notre création</em></h3>
-      <div class="citem"><div class="cico">✦</div><div class="ctxt"><strong data-k="c3">Atelier</strong><span data-k="c4">Marrakech, Maroc</span></div></div>
-      <div class="citem"><div class="cico">◈</div><div class="ctxt"><strong data-k="c5">Disponibilité</strong><span data-k="c6">Sur rendez-vous · Lundi – Samedi</span></div></div>
-      <div class="citem"><div class="cico">✓</div><div class="ctxt"><strong>WhatsApp</strong><span>+212 783-119833</span></div></div>
-      <div class="citem"><div class="cico">✧</div><div class="ctxt"><strong>Instagram</strong><span>@bylallacooture</span></div></div>
-      <a href="https://www.instagram.com/bylallacooture/" target="_blank" class="igbtn">📷 &nbsp;<span data-k="c7">Suivre sur Instagram</span></a>
-    </div>
-    <div class="rv">
-      <form class="cform" onsubmit="hdSend(event)">
-        <div class="frow">
-          <div class="fgrp"><label class="flbl" data-k="f_n">Nom</label><input type="text" class="finp" required></div>
-          <div class="fgrp"><label class="flbl" data-k="f_e">Email</label><input type="email" class="finp" required></div>
+  <!-- SERVICES -->
+  <section id="services" class="sec">
+    <div class="sv-lay">
+      <div class="sv-intro rvl">
+        <p class="stag" data-k="s0">Savoir-Faire</p>
+        <h2 class="stitl" data-k="s1">L'excellence<br>à chaque <em>couture</em></h2>
+        <div class="div">
+          <div class="dline"></div>
+          <div class="dgem"></div>
+          <div class="dline"></div>
         </div>
-        <div class="fgrp"><label class="flbl" data-k="f_s">Service Souhaité</label><input type="text" class="finp"></div>
-        <div class="fgrp"><label class="flbl" data-k="f_m">Message</label><textarea class="ftxt" required></textarea></div>
-        <button type="submit" class="btn btn-dk"><span data-k="f_b">Envoyer</span></button>
-      </form>
+        <p data-k="s2"
+          style="font-family:'Playfair Display',serif;font-style:italic;font-size:16px;line-height:1.9;color:var(--muted);">
+          De la première esquisse à la dernière broderie, chaque création porte l'âme de l'artisanat marocain.</p>
+      </div>
+      <div class="sv-list">
+        <div class="srow rv"><span class="snum">01</span>
+          <div class="sbody">
+            <div class="sname"><span data-k="s1n">Modèles Sur Mesure</span><i>✦</i></div>
+            <p class="sdesc" data-k="s1d">Chaque silhouette mérite une création pensée pour elle seule — des vêtements
+              qui épousent votre morphologie et votre essence.</p>
+          </div>
+        </div>
+        <div class="srow rv"><span class="snum">02</span>
+          <div class="sbody">
+            <div class="sname"><span data-k="s2n">Stylisme & Design</span><i>◈</i></div>
+            <p class="sdesc" data-k="s2d">Un regard créatif qui tisse la tradition marocaine aux courants de la mode
+              internationale contemporaine.</p>
+          </div>
+        </div>
+        <div class="srow rv"><span class="snum">03</span>
+          <div class="sbody">
+            <div class="sname"><span data-k="s3n">Modélisme</span><i>❧</i></div>
+            <p class="sdesc" data-k="s3d">La rigueur technique comme fondation de la beauté — des patrons élaborés avec
+              précision pour une coupe parfaite.</p>
+          </div>
+        </div>
+        <div class="srow rv"><span class="snum">04</span>
+          <div class="sbody">
+            <div class="sname"><span data-k="s4n">Confection Haute Couture</span><i>✧</i></div>
+            <p class="sdesc" data-k="s4d">Des pièces d'exception entièrement confectionnées à la main, avec les matières
+              les plus nobles et les broderies les plus fines.</p>
+          </div>
+        </div>
+        <div class="srow rv"><span class="snum">05</span>
+          <div class="sbody">
+            <div class="sname"><span data-k="s5n">Croquis de Mode</span><i>✒</i></div>
+            <p class="sdesc" data-k="s5d">Des illustrations de mode aux lines délicates qui donnent vie aux idées avant
+              même que le tissu ne soit touché.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="sec">
+    <div class="g-head rv">
+      <div>
+        <p class="stag" data-k="g0">Portfolio</p>
+        <h2 class="stitl" data-k="g1">Nos <em>Créations</em></h2>
+      </div>
+      <div class="g-filters">
+        <button class="flt on" data-f="all" data-k="f0">Tout</button>
+        <button class="flt" data-f="couture" data-k="f1">Couture</button>
+        <button class="flt" data-f="bridal" data-k="f2">Mariée</button>
+        <button class="flt" data-f="sketch" data-k="f3">Croquis</button>
+      </div>
+    </div>
+    <div class="gmason">
+      <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image1.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl1">Broderie Traditionnelle</span></div>
+      </div>
+      <div class="gi" data-cat="bridal" onclick="oLb(this)"><img src="assets/images/image6.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl2">Robe de Mariée</span></div>
+      </div>
+      <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image3.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl3">Caftan Revisité</span></div>
+      </div>
+      <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image4.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl4">Collection Sahara</span></div>
+      </div>
+      <div class="gi" data-cat="bridal" onclick="oLb(this)"><img src="assets/images/image8.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl5">Couture de Mariée</span></div>
+      </div>
+      <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image5.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl6">Luxe Prêt-à-Porter</span></div>
+      </div>
+      <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image2.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl7">Détail de Couture</span></div>
+      </div>
+      <div class="gi" data-cat="sketch" onclick="oLb(this)"><img src="assets/images/image10.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl8">Croquis Atelier</span></div>
+      </div>
+      <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="assets/images/image9.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl9">Broderie Sfifa</span></div>
+      </div>
+      <div class="gi" data-cat="sketch" onclick="oLb(this)"><img src="assets/images/image11.jpeg" loading="lazy" alt="">
+        <div class="gov"><span class="glbl" data-k="gl10">Dessin de Mode</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATELIER -->
+  <section id="atelier">
+    <div class="atimg rvl"><img src="assets/images/image10.jpeg" alt="Atelier Lalla Cooture"></div>
+    <div class="atbody">
+      <p class="stag" data-k="a0">Notre Univers</p>
+      <h2 class="stitl" data-k="a1">L'<em>Atelier</em><br>Lalla Cooture</h2>
+      <div class="div" style="margin:22px 0">
+        <div class="dline"></div>
+        <div class="dgem"></div>
+        <div class="dline"></div>
+      </div>
+      <p class="atp" data-k="a2">Née d'une passion profonde for l'artisanat marocain, Lalla Cooture est un espace de
+        création où héritage et modernité se rencontrent avec élégance.</p>
+      <p class="atp" data-k="a3">Chaque fil raconte une histoire, chaque broderie honore un patrimoine millénaire,
+        sublimé pour la femme d'aujourd'hui.</p>
+      <div class="stats">
+        <div class="stb"><span class="stn">100%</span><span class="stl" data-k="a4">Sur Mesure</span></div>
+        <div class="stb"><span class="stn">✦</span><span class="stl" data-k="a5">Haute Couture</span></div>
+        <div class="stb"><span class="stn">5+</span><span class="stl" data-k="a6">Ans de Création</span></div>
+      </div>
+      <a href="#contact" class="btn btn-dk" style="width:fit-content"><span data-k="a7">Prendre Rendez-vous</span></a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="sec">
+    <div style="text-align:center" class="rv">
+      <p class="stag" style="justify-content:center" data-k="c0">Nous Rejoindre</p>
+      <h2 class="stitl" data-k="c1">Créons <em>Ensemble</em></h2>
+      <div class="div">
+        <div class="dline"></div>
+        <div class="dgem"></div>
+        <div class="dline"></div>
+      </div>
+    </div>
+    <div class="c-wrap">
+      <div class="cl rvl">
+        <h3 data-k="c2">Votre vision,<br><em>notre création</em></h3>
+        <div class="citem">
+          <div class="cico">✦</div>
+          <div class="ctxt"><strong data-k="c3">Atelier</strong><span data-k="c4">Marrakech, Maroc</span></div>
+        </div>
+        <div class="citem">
+          <div class="cico">◈</div>
+          <div class="ctxt"><strong data-k="c5">Disponibilité</strong><span data-k="c6">Sur rendez-vous · Lundi –
+              Samedi</span></div>
+        </div>
+        <div class="citem">
+          <div class="cico">✓</div>
+          <div class="ctxt"><strong>WhatsApp</strong><span>+212 783-119833</span></div>
+        </div>
+        <div class="citem">
+          <div class="cico">✧</div>
+          <div class="ctxt"><strong>Instagram</strong><span>@bylallacooture</span></div>
+        </div>
+        <a href="https://www.instagram.com/bylallacooture/" target="_blank" class="igbtn">📷 &nbsp;<span
+            data-k="c7">Suivre sur Instagram</span></a>
+      </div>
+      <div class="rv">
+        <form class="cform" onsubmit="hdSend(event)">
+          <div class="frow">
+            <div class="fgrp"><label class="flbl" data-k="f_n">Nom</label><input type="text" class="finp" required>
+            </div>
+            <div class="fgrp"><label class="flbl" data-k="f_e">Email</label><input type="email" class="finp" required>
+            </div>
+          </div>
+          <div class="fgrp"><label class="flbl" data-k="f_s">Service Souhaité</label><input type="text" class="finp">
+          </div>
+          <div class="fgrp"><label class="flbl" data-k="f_m">Message</label><textarea class="ftxt" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-dk"><span data-k="f_b">Envoyer</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fbrand"><em>Lalla</em> Cooture</div>
+    <p class="fcp" data-k="fp">© 2025 Lalla Cooture — Tous droits réservés</p>
+    <p class="fcp-loc">HAUTE COUTURE · Marrakech</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lb" onclick="cLb()">
+    <button class="lbx" onclick="cLb()">✕</button>
+    <img id="lbImg" src="" alt="">
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="fbrand"><em>Lalla</em> Cooture</div>
-  <p class="fcp" data-k="fp">© 2025 Lalla Cooture — Tous droits réservés</p>
-  <p class="fcp-loc">HAUTE COUTURE · Marrakech</p>
-</footer>
+  <!-- Floating WA -->
+  <a href="https://wa.me/212783119833" class="wa-float" target="_blank">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.67-1.611-.918-2.208-.242-.583-.487-.503-.67-.512-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.938 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.892a11.826 11.826 0 00-3.483-8.413z" />
+    </svg>
+  </a>
 
-<!-- LIGHTBOX -->
-<div class="lb" id="lb" onclick="cLb()">
-  <button class="lbx" onclick="cLb()">✕</button>
-  <img id="lbImg" src="" alt="">
-</div>
-
-<!-- Floating WA -->
-<a href="https://wa.me/212783119833" class="wa-float" target="_blank">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.67-1.611-.918-2.208-.242-.583-.487-.503-.67-.512-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.938 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.892a11.826 11.826 0 00-3.483-8.413z"/></svg>
-</a>
-
-<script src="script.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
+
 </html>
