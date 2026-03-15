@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -234,6 +234,10 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:42px 80p
   .stb:last-child{border-bottom:none;}
 }
 @media(max-width:480px){.gmason{columns:1;}}
+
+/* WHATSAPP */
+.wa-float{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25D366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow:2px 2px 3px rgba(0,0,0,0.2);z-index:100;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .3s ease;}
+.wa-float:hover{background:#128C7E;transform:scale(1.1);}
 </style>
 </head>
 <body>
@@ -255,10 +259,10 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:42px 80p
     <li><a href="#contact"  data-k="n4">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="pill on" onclick="setL('fr')" id="bfr">FR</button>
+    <button class="pill"    onclick="setL('fr')" id="bfr">FR</button>
     <button class="pill"    onclick="setL('en')" id="ben">EN</button>
     <button class="pill"    onclick="setL('ar')" id="bar">ع</button>
-    <button class="thm"     onclick="toggleThm()" id="tBtn">☽</button>
+    <button class="thm"     onclick="toggleThm()" id="tBtn">☀</button>
     <button class="hbg"     onclick="togMob()" id="hbgBtn">
       <span></span><span></span><span></span>
     </button>
@@ -350,7 +354,7 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:42px 80p
     <p class="stag" data-k="a0">Notre Univers</p>
     <h2 class="stitl" data-k="a1">L'<em>Atelier</em><br>Lalla Cooture</h2>
     <div class="div" style="margin:22px 0"><div class="dline"></div><div class="dgem"></div><div class="dline"></div></div>
-    <p class="atp" data-k="a2">Née d'une passion profonde pour l'artisanat marocain, Lalla Cooture est un espace de création où héritage et modernité se rencontrent avec élégance.</p>
+    <p class="atp" data-k="a2">Née d'une passion profonde for l'artisanat marocain, Lalla Cooture est un espace de création où héritage et modernité se rencontrent avec élégance.</p>
     <p class="atp" data-k="a3">Chaque fil raconte une histoire, chaque broderie honore un patrimoine millénaire, sublimé pour la femme d'aujourd'hui.</p>
     <div class="stats">
       <div class="stb"><span class="stn">100%</span><span class="stl" data-k="a4">Sur Mesure</span></div>
@@ -373,8 +377,9 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:42px 80p
       <h3 data-k="c2">Votre vision,<br><em>notre création</em></h3>
       <div class="citem"><div class="cico">✦</div><div class="ctxt"><strong data-k="c3">Atelier</strong><span data-k="c4">Marrakech, Maroc</span></div></div>
       <div class="citem"><div class="cico">◈</div><div class="ctxt"><strong data-k="c5">Disponibilité</strong><span data-k="c6">Sur rendez-vous · Lundi – Samedi</span></div></div>
-      <div class="citem"><div class="cico">✧</div><div class="ctxt"><strong>Instagram</strong><span>@lallacooture</span></div></div>
-      <a href="https://instagram.com/lallacooture" target="_blank" class="igbtn">📷 &nbsp;<span data-k="c7">Suivre sur Instagram</span></a>
+      <div class="citem"><div class="cico">✓</div><div class="ctxt"><strong>WhatsApp</strong><span>+212 600-000000</span></div></div>
+      <div class="citem"><div class="cico">✧</div><div class="ctxt"><strong>Instagram</strong><span>@bylallacooture</span></div></div>
+      <a href="https://www.instagram.com/bylallacooture/" target="_blank" class="igbtn">📷 &nbsp;<span data-k="c7">Suivre sur Instagram</span></a>
     </div>
     <div class="rv">
       <form class="cform" onsubmit="hdSend(event)">
@@ -403,6 +408,11 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:42px 80p
   <img id="lbImg" src="" alt="">
 </div>
 
+<!-- Floating WA -->
+<a href="https://wa.me/212600000000" class="wa-float" target="_blank">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.67-1.611-.918-2.208-.242-.583-.487-.503-.67-.512-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.938 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.892a11.826 11.826 0 00-3.483-8.413z"/></svg>
+</a>
+
 <script>
 /* cursor */
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
@@ -412,7 +422,7 @@ document.addEventListener('mousemove',e=>{
 });
 
 /* theme */
-let thm='light';
+let thm='dark';
 function toggleThm(){
   thm=thm==='light'?'dark':'light';
   document.documentElement.setAttribute('data-theme',thm);
@@ -445,7 +455,7 @@ const T={
     gl7:'Détail de Couture',gl8:'Croquis Atelier',gl9:'Broderie Sfifa',gl10:'Dessin de Mode',
     a0:'Notre Univers',a1:"L'Atelier Lalla Cooture",
     a2:"Née d'une passion profonde pour l'artisanat marocain, Lalla Cooture est un espace de création où héritage et modernité se rencontrent.",
-    a3:"Chaque fil raconte une histoire, chaque broderie honore un patrimoine millénaire, sublimé pour la femme d'aujourd'hui.",
+    a3:"Chaque fil raconte une story, chaque broderie honore un patrimoine millénaire, sublimé pour la femme d'aujourd'hui.",
     a4:'Sur Mesure',a5:'Haute Couture',a6:"Ans de Création",a7:'Prendre Rendez-vous',
     c0:'Nous Rejoindre',c1:'Créons Ensemble',c2:'Votre vision, notre création',
     c3:'Atelier',c4:'Marrakech, Maroc',c5:'Disponibilité',c6:'Sur rendez-vous · Lundi – Samedi',
@@ -566,6 +576,15 @@ document.querySelectorAll('.rv,.rvl').forEach(el=>obs.observe(el));
 /* form */
 function hdSend(e){
   e.preventDefault();
+  const f = e.target;
+  const n = f.querySelector('input[type="text"]').value;
+  const em = f.querySelector('input[type="email"]').value;
+  const s_val = f.querySelectorAll('input[type="text"]')[1].value;
+  const m = f.querySelector('textarea').value;
+  
+  const body = `Nom: ${n}%0D%0AEmail: ${em}%0D%0AService: ${s_val}%0D%0AMessage: ${m}`;
+  window.location.href = `mailto:abdellah17lambaraa@gmail.com?subject=Contact Lalla Cooture from ${n}&body=${body}`;
+
   const s=e.target.querySelector('[data-k="f_b"]');
   const o=s.textContent;
   s.textContent='✓';
@@ -573,6 +592,7 @@ function hdSend(e){
 }
 
 /* init */
+setL('fr');
 buildMq(T.fr.mq);
 </script>
 </body>
