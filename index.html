@@ -28,6 +28,77 @@
   <meta property="twitter:image" content="https://lalla-cooture.com/assets/images/logo.jpeg">
 
   <link rel="icon" type="image/jpeg" href="assets/images/logo.jpeg">
+
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Lalla Cooture",
+      "image": "https://lalla-cooture.com/assets/images/logo.jpeg",
+      "@id": "https://lalla-cooture.com/#localbusiness",
+      "url": "https://lalla-cooture.com/",
+      "telephone": "+212783119833",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "N/A",
+        "addressLocality": "Marrakech",
+        "addressRegion": "Marrakech-Safi",
+        "postalCode": "40000",
+        "addressCountry": "MA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.6295,
+        "longitude": -7.9811
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/bylallacooture/"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Brand",
+      "name": "Lalla Cooture",
+      "logo": "https://lalla-cooture.com/assets/images/logo.jpeg",
+      "description": "Maison de Haute Couture Marocaine spécialisée dans le sur-mesure et l'artisanat de luxe."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Caftan Sur Mesure",
+      "provider": {
+        "@type": "LocalBusiness",
+        "@id": "https://lalla-cooture.com/#localbusiness"
+      },
+      "description": "Création de caftans marocains uniques et personnalisés à Marrakech."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Robe de Mariée Haute Couture",
+      "provider": {
+        "@type": "LocalBusiness",
+        "@id": "https://lalla-cooture.com/#localbusiness"
+      },
+      "description": "Conception et réalisation de robes de mariée d'exception entièrement faites à la main."
+    }
+  ]
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&family=Noto+Naskh+Arabic:wght@300;400;500&display=swap"
@@ -260,18 +331,41 @@
             data-k="c7">Suivre sur Instagram</span></a>
       </div>
       <div class="rv">
-        <form class="cform" onsubmit="hdSend(event)">
+        <form class="cform" id="contactForm" action="https://formsubmit.co/abdellah17lambaraa@gmail.com" method="POST"
+          onsubmit="hdSend(event)">
+          <!-- FormSubmit Configuration -->
+          <input type="hidden" name="_subject" value="Nouveau message - Lalla Cooture">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+
           <div class="frow">
-            <div class="fgrp"><label class="flbl" data-k="f_n">Nom</label><input type="text" class="finp" required>
+            <div class="fgrp"><label class="flbl" data-k="f_n">Nom</label><input type="text" name="name" class="finp"
+                required>
             </div>
-            <div class="fgrp"><label class="flbl" data-k="f_e">Email</label><input type="email" class="finp" required>
+            <div class="fgrp"><label class="flbl" data-k="f_p">Téléphone</label><input type="tel" name="phone"
+                class="finp">
             </div>
           </div>
-          <div class="fgrp"><label class="flbl" data-k="f_s">Service Souhaité</label><input type="text" class="finp">
+          <div class="frow">
+            <div class="fgrp"><label class="flbl" data-k="f_e">Email (Optionnel)</label><input type="email" name="email"
+                class="finp">
+            </div>
+            <div class="fgrp">
+              <label class="flbl" data-k="f_s">Service Souhaité</label>
+              <select name="service" class="finp" style="appearance: none; -webkit-appearance: none; cursor: pointer;">
+                <option value="Couture Sur Mesure" data-k="s1n">Modèles Sur Mesure</option>
+                <option value="Haute Couture" data-k="s4n">Confection Haute Couture</option>
+                <option value="Stylisme & Design" data-k="s2n">Stylisme & Design</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
           </div>
-          <div class="fgrp"><label class="flbl" data-k="f_m">Message</label><textarea class="ftxt" required></textarea>
+          <div class="fgrp"><label class="flbl" data-k="f_m">Message</label><textarea name="message" class="ftxt"></textarea>
           </div>
           <button type="submit" class="btn btn-dk"><span data-k="f_b">Envoyer</span></button>
+          <div id="formStatus"
+            style="margin-top: 15px; font-size: 13px; font-family: 'Playfair Display', serif; font-style: italic; display: none;">
+          </div>
         </form>
       </div>
     </div>

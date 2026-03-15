@@ -44,7 +44,7 @@ const T={
     c0:'Nous Rejoindre',c1:'Créons Ensemble',c2:'Votre vision, notre création',
     c3:'Atelier',c4:'Marrakech, Maroc',c5:'Disponibilité',c6:'Sur rendez-vous · Lundi – Samedi',
     c7:'Suivre sur Instagram',
-    f_n:'Nom',f_e:'Email',f_s:'Service Souحaité',f_m:'Message',f_b:'Envoyer',
+    f_n:'Nom',f_e:'Email',f_s:'Service Souhaité',f_m:'Message',f_b:'Envoyer',
     fp:'© 2025 Lalla Cooture — Tous droits réservés',
     mq:['Haute Couture','Sur Mesure','Marrakech','Modélisme','Stylisme','Broderie','Élégance','Savoir-Faire']
   },
@@ -73,7 +73,7 @@ const T={
     c0:'Get in Touch',c1:'Create Together',c2:'Your vision, our creation',
     c3:'Atelier',c4:'Marrakech, Morocco',c5:'Availability',c6:'By appointment · Mon – Sat',
     c7:'Follow on Instagram',
-    f_n:'Name',f_e:'Email',f_s:'Desired Service',f_m:'Message',f_b:'Send',
+    f_n:'Name',f_e:'Email',f_p:'Phone',f_s:'Desired Service',f_m:'Message',f_b:'Send',
     fp:'© 2025 Lalla Cooture — All rights reserved',
     mq:['Haute Couture','Bespoke','Marrakech','Pattern Making','Styling','Embroidery','Elegance','Craftsmanship']
   },
@@ -102,7 +102,7 @@ const T={
     c0:'تواصل معنا',c1:'لنبدع معًا',c2:'رؤيتك، إبداعنا',
     c3:'الأتيليه',c4:'مراكش، المغرب',c5:'التوفر',c6:'بموعد مسبق · الاثنين – السبت',
     c7:'تابعنا على إنستغرام',
-    f_n:'الاسم',f_e:'البريد الإلكتروني',f_s:'الخدمة المطلوبة',f_m:'رسالتك',f_b:'إرسال',
+    f_n:'الاسم',f_e:'البريد الإلكتروني',f_p:'الهاتف',f_s:'الخدمة المطلوبة',f_m:'رسالتك',f_b:'إرسال',
     fp:'© 2025 لالة كوتور — جميع الحقوق محفوظة',
     mq:['خياطة راقية','على المقاس','مراكش','باترون','تصميم','تطريز','أناقة','حرفة']
   }
@@ -161,18 +161,47 @@ document.querySelectorAll('.rv,.rvl').forEach(el=>obs.observe(el));
 function hdSend(e){
   e.preventDefault();
   const f = e.target;
-  const n = f.querySelector('input[type="text"]').value;
-  const em = f.querySelector('input[type="email"]').value;
-  const s_val = f.querySelectorAll('input[type="text"]')[1].value;
-  const m = f.querySelector('textarea').value;
+  const s = f.querySelector('button[type="submit"]');
+  const d = document.getElementById('formStatus');
+  const o = s.innerHTML;
   
-  const body = `Nom: ${n}%0D%0AEmail: ${em}%0D%0AService: ${s_val}%0D%0AMessage: ${m}`;
-  window.location.href = `mailto:abdellah17lambaraa@gmail.com?subject=Contact Lalla Cooture from ${n}&body=${body}`;
-
-  const s=e.target.querySelector('[data-k="f_b"]');
-  const o=s.textContent;
-  s.textContent='✓';
-  setTimeout(()=>s.textContent=o,2200);
+  s.disabled = true;
+  s.innerHTML = '<span style="opacity:0.6">...</span>';
+  
+  const dat = new FormData(f);
+  
+  fetch(f.action, {
+    method: "POST",
+    body: dat,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(res => {
+    s.disabled = false;
+    s.innerHTML = o;
+    d.style.display = 'block';
+    
+    if (res.ok) {
+      d.style.color = 'var(--accent)';
+      d.innerHTML = `<div style="background:rgba(196,168,130,0.1); border:1px solid var(--accent); padding:15px; border-radius:4px; animation: rise 0.4s ease;">
+        <span style="font-size:20px; vertical-align:middle; margin-right:10px;">✧</span>
+        ${lang === 'ar' ? 'تم الإرسال بنجاح! سنتصل بك قريباً.' : (lang === 'en' ? 'Sent successfully! We will contact you soon.' : 'Envoyé avec succès ! Nous vous contacterons bientôt.')}
+      </div>`;
+      f.reset();
+      setTimeout(() => d.style.display = 'none', 6000);
+    } else {
+      throw new Error();
+    }
+  })
+  .catch(err => {
+    s.disabled = false;
+    s.innerHTML = o;
+    d.style.display = 'block';
+    d.style.color = '#e74c3c';
+    d.innerHTML = `<div style="background:rgba(231,76,60,0.1); border:1px solid #e74c3c; padding:15px; border-radius:4px; animation: rise 0.4s ease;">
+        <span style="font-size:20px; vertical-align:middle; margin-right:10px;">✕</span>
+        ${lang === 'ar' ? 'حدث خطأ، حاول مرة أخرى.' : (lang === 'en' ? 'Error, please try again.' : 'Erreur, veuillez réessayer.')}
+      </div>`;
+  });
 }
 
 /* init */
