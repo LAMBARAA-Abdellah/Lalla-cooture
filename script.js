@@ -44,7 +44,7 @@ const T={
     c0:'Nous Rejoindre',c1:'Créons Ensemble',c2:'Votre vision, notre création',
     c3:'Atelier',c4:'Marrakech, Maroc',c5:'Disponibilité',c6:'Sur rendez-vous · Lundi – Samedi',
     c7:'Suivre sur Instagram',
-    f_n:'Nom',f_e:'Email',f_s:'Service Souhaité',f_m:'Message',f_b:'Envoyer',
+    f_n:'Nom',f_e:'Email',f_p:'Téléphone',f_s:'Service Souhaité',f_m:'Message',f_b:'Envoyer',
     fp:'© 2025 Lalla Cooture — Tous droits réservés',
     mq:['Haute Couture','Sur Mesure','Marrakech','Modélisme','Stylisme','Broderie','Élégance','Savoir-Faire']
   },
