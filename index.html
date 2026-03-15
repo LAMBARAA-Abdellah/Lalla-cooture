@@ -1,1052 +1,390 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lalla Cooture — Haute Couture Marocaine</title>
+<title>Lalla Cooture — Haute Couture</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&family=Noto+Naskh+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --gold-dim: #8A6B2A;
-    --cream: #F5EDD8;
-    --green: #2D6A3F;
-    --green-light: #4A9B5F;
-    --white: #FAFAF7;
-    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  [data-theme="dark"] {
-    --bg: #0C0C0A;
-    --bg2: #141410;
-    --bg3: #1C1C18;
-    --surface: #1E1E1A;
-    --surface2: #262622;
-    --text: #F0E8D0;
-    --text-muted: #9A8F78;
-    --border: rgba(201,168,76,0.15);
-    --nav-bg: rgba(12,12,10,0.92);
-    --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    --overlay: rgba(12,12,10,0.7);
-  }
-
-  [data-theme="light"] {
-    --bg: #FAFAF5;
-    --bg2: #F5F0E8;
-    --bg3: #EDE8DC;
-    --surface: #FFFFFF;
-    --surface2: #F8F5EE;
-    --text: #1A1A15;
-    --text-muted: #6B6456;
-    --border: rgba(201,168,76,0.2);
-    --nav-bg: rgba(250,250,245,0.92);
-    --card-shadow: 0 20px 60px rgba(0,0,0,0.08);
-    --overlay: rgba(250,250,245,0.7);
-  }
-
-  * { margin:0; padding:0; box-sizing:border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    transition: background var(--transition), color var(--transition);
-  }
-
-  body[dir="rtl"] { font-family: 'Noto Naskh Arabic', serif; }
-
-  /* ====== ORNAMENTAL LINES ====== */
-  .ornament {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    justify-content: center;
-    margin: 24px auto;
-    width: fit-content;
-  }
-  .ornament::before, .ornament::after {
-    content: '';
-    width: 80px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-  .ornament-diamond {
-    width: 8px; height: 8px;
-    background: var(--gold);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-  }
-
-  /* ====== NAVBAR ====== */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: var(--nav-bg);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 40px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background var(--transition);
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-
-  .nav-logo img {
-    height: 50px;
-    width: 50px;
-    object-fit: contain;
-    filter: var(--logo-filter, none);
-  }
-
-  [data-theme="dark"] .nav-logo img { filter: invert(1) sepia(1) saturate(1.5) hue-rotate(5deg); }
-
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: color 0.3s;
-    position: relative;
-  }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 0;
-    height: 1px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.3s;
-  }
-
-  .nav-links a:hover { color: var(--gold); }
-  .nav-links a:hover::after { transform: scaleX(1); }
-
-  .nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .lang-btn, .theme-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 6px 12px;
-    border-radius: 2px;
-    cursor: pointer;
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-  }
-
-  .lang-btn:hover, .theme-btn:hover,
-  .lang-btn.active { 
-    color: var(--gold);
-    border-color: var(--gold);
-    background: rgba(201,168,76,0.05);
-  }
-
-  .lang-btn.active { color: var(--gold); border-color: var(--gold); }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-  }
-  .hamburger span {
-    display: block;
-    width: 24px; height: 1px;
-    background: var(--text);
-    transition: all 0.3s;
-  }
-
-  /* ====== HERO ====== */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-    padding-top: 80px;
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 60px 80px 80px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s ease forwards;
-  }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(48px, 6vw, 88px);
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -1px;
-    margin-bottom: 8px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s ease forwards;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-subtitle {
-    font-family: 'Cinzel', serif;
-    font-size: 14px;
-    letter-spacing: 6px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-bottom: 40px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s ease forwards;
-  }
-
-  .hero-desc {
-    font-size: 17px;
-    line-height: 1.8;
-    color: var(--text-muted);
-    max-width: 420px;
-    margin-bottom: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s ease forwards;
-    font-style: italic;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s ease forwards;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    padding: 16px 40px;
-    background: var(--gold);
-    color: #0C0C0A;
-    text-decoration: none;
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    font-weight: 600;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gold-light);
-    transform: translateX(-100%);
-    transition: transform 0.3s;
-  }
-  .btn-primary:hover::before { transform: translateX(0); }
-  .btn-primary span { position: relative; z-index: 1; }
-
-  .btn-outline {
-    display: inline-block;
-    padding: 15px 40px;
-    border: 1px solid var(--border);
-    color: var(--text);
-    text-decoration: none;
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-  }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-  .hero-right {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-image-grid {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 4px;
-  }
-
-  .hero-img {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .hero-img img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-  }
-
-  .hero-img:hover img { transform: scale(1.05); }
-
-  .hero-img:first-child {
-    grid-row: span 2;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, var(--bg) 0%, transparent 40%);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* ====== SECTION COMMONS ====== */
-  section { padding: 100px 80px; }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .section-tag {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 4vw, 60px);
-    font-weight: 300;
-    line-height: 1.1;
-  }
-
-  .section-title em { font-style: italic; color: var(--gold); }
-
-  /* ====== SERVICES ====== */
-  .services { background: var(--bg2); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2px;
-    margin-top: 60px;
-  }
-
-  .service-card {
-    background: var(--surface);
-    padding: 48px 32px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    cursor: default;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.4s;
-  }
-
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-card:hover { background: var(--surface2); }
-
-  .service-icon {
-    font-size: 36px;
-    margin-bottom: 20px;
-    display: block;
-    filter: drop-shadow(0 0 12px rgba(201,168,76,0.3));
-  }
-
-  .service-name {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-
-  .service-desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  /* ====== GALLERY ====== */
-  .gallery { background: var(--bg); }
-
-  .gallery-filter {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
-  }
-
-  .filter-btn {
-    padding: 8px 24px;
-    border: 1px solid var(--border);
-    background: none;
-    color: var(--text-muted);
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .filter-btn:hover, .filter-btn.active {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(201,168,76,0.05);
-  }
-
-  .gallery-masonry {
-    columns: 3;
-    column-gap: 16px;
-  }
-
-  .gallery-item {
-    break-inside: avoid;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    display: block;
-    transition: transform 0.6s ease;
-  }
-
-  .gallery-item:hover img { transform: scale(1.04); }
-
-  .gallery-item-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(12,12,10,0.8) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s;
-    display: flex;
-    align-items: flex-end;
-    padding: 24px;
-  }
-
-  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
-
-  .gallery-item-label {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-
-  /* ====== ATELIER ====== */
-  .atelier {
-    background: var(--bg2);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    padding: 0;
-  }
-
-  .atelier-visual {
-    position: relative;
-    min-height: 600px;
-    overflow: hidden;
-  }
-
-  .atelier-visual img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-  }
-
-  .atelier-visual-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, transparent 60%);
-  }
-
-  .atelier-content {
-    padding: 80px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .atelier-content .section-tag { text-align: left; }
-  .atelier-content .section-title { text-align: left; margin-bottom: 32px; }
-
-  .atelier-text {
-    font-size: 17px;
-    line-height: 1.9;
-    color: var(--text-muted);
-    font-style: italic;
-    margin-bottom: 40px;
-  }
-
-  .atelier-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 40px;
-  }
-
-  .stat {
-    text-align: center;
-    padding: 24px 16px;
-    border: 1px solid var(--border);
-  }
-
-  .stat-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
-    font-weight: 300;
-    color: var(--gold);
-    display: block;
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-top: 8px;
-    display: block;
-  }
-
-  /* ====== CONTACT ====== */
-  .contact { background: var(--bg); }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .contact-info h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 300;
-    margin-bottom: 24px;
-  }
-
-  .contact-info h3 em { color: var(--gold); font-style: italic; }
-
-  .contact-detail {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  .contact-detail-icon {
-    color: var(--gold);
-    font-size: 18px;
-    margin-top: 2px;
-    flex-shrink: 0;
-  }
-
-  .contact-detail-text { color: var(--text-muted); font-size: 16px; line-height: 1.6; }
-  .contact-detail-text strong { color: var(--text); font-weight: 500; display: block; margin-bottom: 4px; }
-
-  .social-links {
-    display: flex;
-    gap: 12px;
-    margin-top: 32px;
-    flex-wrap: wrap;
-  }
-
-  .social-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    text-decoration: none;
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-  }
-  .social-link:hover { border-color: var(--gold); color: var(--gold); }
-
-  .contact-form { display: flex; flex-direction: column; gap: 20px; }
-
-  .form-group { display: flex; flex-direction: column; gap: 8px; }
-
-  .form-label {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-  }
-
-  .form-input, .form-textarea {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 14px 16px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s;
-    resize: none;
-  }
-
-  .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
-  .form-textarea { min-height: 140px; }
-
-  /* ====== FOOTER ====== */
-  footer {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    padding: 40px 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    color: var(--text-muted);
-  }
-
-  .footer-logo em { color: var(--gold); font-style: italic; }
-
-  .footer-copy {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: var(--text-muted);
-    text-align: center;
-  }
-
-  /* ====== LIGHTBOX ====== */
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .lightbox.open { display: flex; }
-
-  .lightbox img {
-    max-width: 90vw;
-    max-height: 90vh;
-    object-fit: contain;
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: 24px; right: 32px;
-    background: none;
-    border: none;
-    color: var(--gold);
-    font-size: 32px;
-    cursor: pointer;
-    font-family: 'Cinzel', serif;
-  }
-
-  /* ====== MOBILE NAV ====== */
-  .mobile-menu {
-    position: fixed;
-    top: 80px; left: 0; right: 0;
-    background: var(--nav-bg);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 24px 40px;
-    display: none;
-    flex-direction: column;
-    gap: 20px;
-    z-index: 999;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    text-decoration: none;
-    color: var(--text);
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* ====== ANIMATIONS ====== */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ====== RTL ====== */
-  [dir="rtl"] .hero-left { padding: 80px 80px 80px 60px; }
-  [dir="rtl"] .hero-overlay { background: linear-gradient(-90deg, var(--bg) 0%, transparent 40%); }
-  [dir="rtl"] .atelier-content .section-tag,
-  [dir="rtl"] .atelier-content .section-title { text-align: right; }
-
-  /* ====== RESPONSIVE ====== */
-  @media (max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 60px 40px; text-align: center; }
-    .hero-desc { max-width: 100%; }
-    .hero-cta { justify-content: center; }
-    .atelier { grid-template-columns: 1fr; }
-    .atelier-visual { min-height: 400px; }
-    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    section { padding: 80px 40px; }
-    footer { padding: 40px; }
-    .gallery-masonry { columns: 2; }
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 0 24px; }
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .gallery-masonry { columns: 1; }
-    section { padding: 60px 24px; }
-    footer { padding: 32px 24px; text-align: center; flex-direction: column; }
-    .atelier-content { padding: 48px 24px; }
-    .atelier-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  }
-
-  /* Gradient text */
-  .gold-text {
-    background: linear-gradient(135deg, var(--gold-dim), var(--gold), var(--gold-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Decorative bg pattern */
-  .pattern-bg {
-    background-image: 
-      radial-gradient(circle at 25% 25%, rgba(201,168,76,0.03) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(45,106,63,0.03) 0%, transparent 50%);
-  }
+:root {
+  --nude1:#F7F0E8;--nude2:#EDE3D5;--nude3:#DDD0BC;
+  --nude4:#C9B89A;--nude5:#A8916F;--nude6:#7A6448;
+  --cream:#FDFAF5;--accent:#C4A882;--accent-h:#B5956A;
+  --green:#3D6B4A;--trans:0.45s cubic-bezier(0.16,1,0.3,1);
+}
+[data-theme="light"]{
+  --bg:#FDFAF5;--bg2:#F7F0E8;--bg3:#EDE3D5;
+  --surface:#FFFFFF;--text:#2C2218;--muted:#A89078;
+  --border:rgba(168,145,111,0.18);--nav-bg:rgba(253,250,245,0.9);
+  --shadow:0 8px 48px rgba(44,34,24,0.07);
+}
+[data-theme="dark"]{
+  --bg:#1A1410;--bg2:#221C15;--bg3:#2C2218;
+  --surface:#241E17;--text:#F0E8D8;--muted:#8A7560;
+  --border:rgba(168,145,111,0.12);--nav-bg:rgba(26,20,16,0.9);
+  --shadow:0 8px 48px rgba(0,0,0,0.4);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Jost',sans-serif;font-weight:300;
+  background:var(--bg);color:var(--text);overflow-x:hidden;
+  transition:background var(--trans),color var(--trans);
+  cursor:none;
+}
+body[dir="rtl"]{font-family:'Noto Naskh Arabic',serif;}
+
+/* CURSOR */
+.cursor,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+.cursor{width:8px;height:8px;border-radius:50%;background:var(--accent);transition:transform .15s;}
+.cursor-ring{width:34px;height:34px;border-radius:50%;border:1px solid var(--accent);opacity:.4;z-index:99998;transition:transform .4s ease,width .3s,height .3s;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:74px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;background:var(--nav-bg);
+  backdrop-filter:blur(24px) saturate(1.4);
+  border-bottom:1px solid var(--border);
+  transition:background var(--trans);
+}
+.nav-brand{display:flex;align-items:center;gap:13px;text-decoration:none;}
+.nav-brand img{height:42px;width:42px;object-fit:contain;border-radius:50%;border:1px solid var(--border);padding:4px;background:var(--surface);}
+.nav-brand-txt{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--text);}
+.nav-brand-txt em{font-style:italic;color:var(--accent);}
+.nav-links{display:flex;gap:38px;list-style:none;}
+.nav-links a{text-decoration:none;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);transition:color .3s;position:relative;padding-bottom:2px;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.pill{display:inline-flex;align-items:center;padding:6px 13px;border-radius:100px;border:1px solid var(--border);background:none;color:var(--muted);font-family:'Jost',sans-serif;font-size:11px;font-weight:300;letter-spacing:1.5px;cursor:none;transition:all .3s;}
+.pill:hover,.pill.on{border-color:var(--accent);color:var(--accent);background:rgba(196,168,130,.06);}
+.pill.on{background:var(--accent);color:var(--cream);border-color:var(--accent);}
+.thm{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:none;cursor:none;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);transition:all .3s;}
+.thm:hover{border-color:var(--accent);color:var(--accent);}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:6px;}
+.hbg span{width:22px;height:1px;background:var(--muted);display:block;transition:all .3s;}
+.mob{position:fixed;top:74px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:28px 52px;display:none;flex-direction:column;gap:0;z-index:999;}
+.mob.open{display:flex;}
+.mob a{text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:14px 0;border-bottom:1px solid var(--border);transition:color .3s;}
+.mob a:hover{color:var(--accent);}
+
+/* HERO */
+#home{min-height:100vh;display:grid;grid-template-columns:52% 48%;padding-top:74px;overflow:hidden;position:relative;}
+.hl{display:flex;flex-direction:column;justify-content:center;padding:80px 56px 80px 80px;position:relative;z-index:2;}
+.hl::before{content:'';position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(196,168,130,.1) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.htag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);font-weight:400;margin-bottom:26px;display:flex;align-items:center;gap:12px;opacity:0;animation:rise .9s .1s ease forwards;}
+.htag::before{content:'';width:38px;height:1px;background:var(--accent);display:inline-block;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(50px,6.5vw,94px);font-weight:300;line-height:1;letter-spacing:-2px;margin-bottom:6px;opacity:0;animation:rise .9s .25s ease forwards;}
+h1 em{font-style:italic;color:var(--accent);display:block;}
+.hsub{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:42px;opacity:0;animation:rise .9s .4s ease forwards;}
+.hp{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;line-height:1.85;color:var(--muted);max-width:390px;margin-bottom:50px;opacity:0;animation:rise .9s .55s ease forwards;}
+.hact{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:rise .9s .7s ease forwards;}
+.btn{display:inline-block;padding:15px 40px;font-family:'Jost',sans-serif;font-size:11px;font-weight:400;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .35s;border:1px solid;}
+.btn-dk{background:var(--text);color:var(--bg);border-color:var(--text);}
+.btn-dk:hover{background:var(--accent);border-color:var(--accent);color:var(--cream);letter-spacing:4px;}
+.btn-lt{background:none;color:var(--muted);border-color:var(--border);}
+.btn-lt:hover{border-color:var(--accent);color:var(--accent);}
+.hr{position:relative;overflow:hidden;}
+.hr::before{content:'';position:absolute;top:0;left:0;width:120px;height:100%;background:linear-gradient(90deg,var(--bg),transparent);z-index:2;pointer-events:none;}
+.hpanels{position:absolute;inset:0;display:grid;grid-template-rows:58% 42%;grid-template-columns:1fr 1fr;gap:3px;}
+.hpanel{overflow:hidden;}
+.hpanel img{width:100%;height:100%;object-fit:cover;transition:transform .9s ease,filter .4s;filter:saturate(.82);}
+.hpanel:hover img{transform:scale(1.04);filter:saturate(1);}
+.hpanel:first-child{grid-row:span 2;}
+
+/* MARQUEE */
+.mstrip{background:var(--accent);padding:13px 0;overflow:hidden;}
+.mtrack{display:flex;animation:marquee 24s linear infinite;width:max-content;}
+.mitem{white-space:nowrap;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);padding:0 28px;opacity:.9;}
+.mdot{color:rgba(255,255,255,.35);padding:0 4px;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* SECTION BASE */
+.sec{padding:108px 80px;}
+.stag{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--accent);font-weight:400;margin-bottom:18px;}
+.stag::before{content:'';width:26px;height:1px;background:var(--accent);}
+.stitl{font-family:'Playfair Display',serif;font-size:clamp(32px,3.5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-1px;}
+.stitl em{font-style:italic;color:var(--accent);}
+.div{display:flex;align-items:center;gap:14px;margin:30px auto;width:fit-content;}
+.dline{width:56px;height:1px;background:var(--border);}
+.dgem{width:6px;height:6px;background:var(--accent);transform:rotate(45deg);opacity:.55;}
+
+/* SERVICES */
+#services{background:var(--bg2);}
+.sv-lay{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;}
+.sv-intro{position:sticky;top:98px;}
+.sv-intro p{font-family:'Playfair Display',serif;font-style:italic;font-size:16.5px;line-height:1.9;color:var(--muted);margin-top:16px;}
+.sv-list{display:flex;flex-direction:column;gap:2px;}
+.srow{display:flex;align-items:stretch;background:var(--surface);border:1px solid var(--border);padding:34px 38px;gap:28px;transition:all .35s;cursor:default;position:relative;overflow:hidden;}
+.srow::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .35s ease;}
+.srow:hover{background:var(--bg2);}
+.srow:hover::after{transform:scaleY(1);}
+.snum{font-family:'Playfair Display',serif;font-size:12px;font-style:italic;color:var(--accent);opacity:.45;min-width:26px;padding-top:3px;}
+.sbody{flex:1;}
+.sname{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:400;color:var(--text);margin-bottom:9px;display:flex;align-items:center;justify-content:space-between;}
+.sname i{color:var(--accent);font-style:normal;font-size:17px;}
+.sdesc{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.78;color:var(--muted);}
+
+/* GALLERY */
+#gallery{background:var(--bg);}
+.g-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;flex-wrap:wrap;gap:20px;}
+.g-filters{display:flex;gap:6px;flex-wrap:wrap;}
+.flt{padding:8px 21px;border:1px solid var(--border);background:none;color:var(--muted);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:none;transition:all .3s;border-radius:100px;}
+.flt:hover,.flt.on{background:var(--text);color:var(--bg);border-color:var(--text);}
+.gmason{columns:3;column-gap:13px;}
+.gi{break-inside:avoid;margin-bottom:13px;position:relative;overflow:hidden;cursor:none;}
+.gi img{width:100%;display:block;transition:transform .7s ease,filter .4s;filter:saturate(.75);}
+.gi:hover img{transform:scale(1.05);filter:saturate(1);}
+.gov{position:absolute;inset:0;background:linear-gradient(to top,rgba(44,34,24,.72) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:20px 18px;}
+.gi:hover .gov{opacity:1;}
+.glbl{font-family:'Playfair Display',serif;font-style:italic;font-size:13.5px;color:var(--nude1);}
+
+/* ATELIER */
+#atelier{display:grid;grid-template-columns:46% 54%;min-height:660px;padding:0;}
+.atimg{position:relative;overflow:hidden;}
+.atimg img{width:100%;height:100%;object-fit:cover;filter:saturate(.8);}
+.atimg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 70%,var(--bg2));}
+.atbody{background:var(--bg2);padding:90px 68px 90px 58px;display:flex;flex-direction:column;justify-content:center;}
+.atbody .stitl{margin-bottom:26px;}
+.atp{font-family:'Playfair Display',serif;font-style:italic;font-size:16.5px;line-height:1.9;color:var(--muted);margin-bottom:16px;}
+.stats{display:flex;gap:0;border:1px solid var(--border);margin:38px 0;}
+.stb{flex:1;padding:22px 18px;text-align:center;border-right:1px solid var(--border);}
+.stb:last-child{border-right:none;}
+.stn{font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:var(--accent);display:block;line-height:1;}
+.stl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:7px;display:block;}
+
+/* CONTACT */
+#contact{background:var(--bg);}
+.c-wrap{display:grid;grid-template-columns:1fr 1fr;gap:88px;max-width:1060px;margin:58px auto 0;}
+.cl h3{font-family:'Playfair Display',serif;font-size:29px;font-weight:300;line-height:1.35;margin-bottom:34px;font-style:italic;}
+.cl h3 em{color:var(--accent);}
+.citem{display:flex;gap:16px;margin-bottom:26px;}
+.cico{width:34px;height:34px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent);font-size:12px;}
+.ctxt strong{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text);font-weight:400;margin-bottom:4px;}
+.ctxt span{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--muted);}
+.igbtn{display:inline-flex;align-items:center;gap:9px;margin-top:6px;padding:11px 26px;border:1px solid var(--border);text-decoration:none;color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:all .3s;border-radius:100px;}
+.igbtn:hover{border-color:var(--accent);color:var(--accent);}
+.cform{display:flex;flex-direction:column;gap:15px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+.fgrp{display:flex;flex-direction:column;gap:7px;}
+.flbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.finp,.ftxt{background:var(--surface);border:1px solid var(--border);border-bottom:1px solid var(--nude3);color:var(--text);padding:13px 15px;font-family:'Playfair Display',serif;font-style:italic;font-size:15px;outline:none;transition:border-color .3s;resize:none;border-radius:0;}
+.finp:focus,.ftxt:focus{border-color:var(--accent);}
+.ftxt{min-height:128px;}
+
+/* FOOTER */
+footer{background:var(--bg3);border-top:1px solid var(--border);padding:42px 80px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.fbrand{font-family:'Playfair Display',serif;font-size:19px;font-weight:300;}
+.fbrand em{font-style:italic;color:var(--accent);}
+.fcp{font-size:10px;letter-spacing:2px;color:var(--muted);}
+.fcp-loc{letter-spacing:3px;color:var(--accent);font-size:9px;text-transform:uppercase;}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;background:rgba(20,14,10,.97);z-index:9999;display:none;align-items:center;justify-content:center;}
+.lb.open{display:flex;}
+.lb img{max-width:88vw;max-height:88vh;object-fit:contain;border:1px solid rgba(196,168,130,.12);}
+.lbx{position:absolute;top:26px;right:34px;background:none;border:none;color:var(--nude3);font-size:22px;cursor:none;transition:color .2s;}
+.lbx:hover{color:var(--accent);}
+
+/* ANIMATIONS */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s ease;}
+.rvl{opacity:0;transform:translateX(-28px);transition:opacity .8s ease,transform .8s ease;}
+.rv.vis,.rvl.vis{opacity:1;transform:translate(0);}
+@keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+
+/* RTL */
+[dir="rtl"] .hl{padding:80px 80px 80px 56px;}
+[dir="rtl"] .hr::before{left:auto;right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
+[dir="rtl"] .stag::before,[dir="rtl"] .htag::before{display:none;}
+[dir="rtl"] .srow::after{left:auto;right:0;}
+[dir="rtl"] .atimg::after{background:linear-gradient(-90deg,transparent 70%,var(--bg2));}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  #home{grid-template-columns:1fr;}
+  .hr{display:none;}
+  .hl{padding:68px 52px;text-align:center;}
+  .htag{justify-content:center;}
+  .hp{max-width:100%;margin-left:auto;margin-right:auto;}
+  .hact{justify-content:center;}
+  .sv-lay{grid-template-columns:1fr;gap:44px;}
+  .sv-intro{position:static;}
+  #atelier{grid-template-columns:1fr;}
+  .atimg{height:400px;}
+  .atimg::after{background:none;}
+  .atbody{padding:58px 52px;}
+  .c-wrap{grid-template-columns:1fr;gap:44px;}
+}
+@media(max-width:768px){
+  nav{padding:0 22px;}
+  .nav-links{display:none;}
+  .hbg{display:flex;}
+  .gmason{columns:2;}
+  .sec{padding:68px 24px;}
+  footer{padding:34px 24px;flex-direction:column;text-align:center;}
+  .hl{padding:52px 22px;}
+  .atbody{padding:44px 22px;}
+  .mob{padding:24px;}
+  .frow{grid-template-columns:1fr;}
+  .stats{flex-direction:column;}
+  .stb{border-right:none;border-bottom:1px solid var(--border);}
+  .stb:last-child{border-bottom:none;}
+}
+@media(max-width:480px){.gmason{columns:1;}}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav>
-  <a href="#" class="nav-logo">
-    <img src="logo.jpeg" alt="Lalla Cooture">
-  </a>
-  
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#accueil" class="nav-link" data-key="nav_home">Accueil</a></li>
-    <li><a href="#services" class="nav-link" data-key="nav_services">Services</a></li>
-    <li><a href="#galerie" class="nav-link" data-key="nav_gallery">Galerie</a></li>
-    <li><a href="#atelier" class="nav-link" data-key="nav_atelier">Atelier</a></li>
-    <li><a href="#contact" class="nav-link" data-key="nav_contact">Contact</a></li>
-  </ul>
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
 
-  <div class="nav-controls">
-    <button class="lang-btn active" onclick="setLang('fr')" id="btn-fr">FR</button>
-    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
-    <button class="lang-btn" onclick="setLang('ar')" id="btn-ar">ع</button>
-    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☽</button>
-    <button class="hamburger" onclick="toggleMenu()" id="hamburger">
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-brand">
+    <img src="logo.jpeg" alt="Lalla Cooture">
+    <span class="nav-brand-txt"><em>Lalla</em> Cooture</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home"     data-k="n0">Accueil</a></li>
+    <li><a href="#services" data-k="n1">Services</a></li>
+    <li><a href="#gallery"  data-k="n2">Galerie</a></li>
+    <li><a href="#atelier"  data-k="n3">Atelier</a></li>
+    <li><a href="#contact"  data-k="n4">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="pill on" onclick="setL('fr')" id="bfr">FR</button>
+    <button class="pill"    onclick="setL('en')" id="ben">EN</button>
+    <button class="pill"    onclick="setL('ar')" id="bar">ع</button>
+    <button class="thm"     onclick="toggleThm()" id="tBtn">☽</button>
+    <button class="hbg"     onclick="togMob()" id="hbgBtn">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#accueil" onclick="closeMenu()" data-key="nav_home">Accueil</a>
-  <a href="#services" onclick="closeMenu()" data-key="nav_services">Services</a>
-  <a href="#galerie" onclick="closeMenu()" data-key="nav_gallery">Galerie</a>
-  <a href="#atelier" onclick="closeMenu()" data-key="nav_atelier">Atelier</a>
-  <a href="#contact" onclick="closeMenu()" data-key="nav_contact">Contact</a>
+<div class="mob" id="mobM">
+  <a href="#home"     onclick="closM()" data-k="n0">Accueil</a>
+  <a href="#services" onclick="closM()" data-k="n1">Services</a>
+  <a href="#gallery"  onclick="closM()" data-k="n2">Galerie</a>
+  <a href="#atelier"  onclick="closM()" data-k="n3">Atelier</a>
+  <a href="#contact"  onclick="closM()" data-k="n4">Contact</a>
 </div>
 
 <!-- HERO -->
-<section id="accueil" class="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow" data-key="hero_eyebrow">Maison de Couture — Marrakech</p>
-    <h1 class="hero-title"><em data-key="hero_title1">Lalla</em><br><span data-key="hero_title2">Cooture</span></h1>
-    <p class="hero-subtitle" data-key="hero_subtitle">Haute Couture Marocaine</p>
-    <p class="hero-desc" data-key="hero_desc">L'art de la couture marocaine réinventé. Chaque pièce est une œuvre unique, tissée d'héritage et de modernité.</p>
-    <div class="hero-cta">
-      <a href="#galerie" class="btn-primary"><span data-key="hero_cta1">Découvrir</span></a>
-      <a href="#contact" class="btn-outline" data-key="hero_cta2">Prendre Rendez-vous</a>
+<section id="home">
+  <div class="hl">
+    <p class="htag" data-k="t0">Maison de Couture · Marrakech</p>
+    <h1><span data-k="t1">Lalla</span><em data-k="t2">Cooture</em></h1>
+    <p class="hsub" data-k="t3">Haute Couture Marocaine</p>
+    <p class="hp" data-k="t4">L'art de la couture marocaine réinventé avec grâce. Chaque pièce naît du fil, du geste et de la mémoire.</p>
+    <div class="hact">
+      <a href="#gallery" class="btn btn-dk" data-k="t5">Découvrir</a>
+      <a href="#contact" class="btn btn-lt" data-k="t6">Rendez-vous</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-image-grid">
-      <div class="hero-img"><img src="image6.jpeg" alt="Lalla Cooture"></div>
-      <div class="hero-img"><img src="image3.jpeg" alt="Lalla Cooture"></div>
-      <div class="hero-img"><img src="image8.jpeg" alt="Lalla Cooture"></div>
+  <div class="hr">
+    <div class="hpanels">
+      <div class="hpanel"><img src="image6.jpeg" alt=""></div>
+      <div class="hpanel"><img src="image3.jpeg" alt=""></div>
+      <div class="hpanel"><img src="image8.jpeg" alt=""></div>
     </div>
-    <div class="hero-overlay"></div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="services pattern-bg">
-  <div class="section-header reveal">
-    <span class="section-tag" data-key="services_tag">Nos Savoir-Faire</span>
-    <h2 class="section-title" data-key="services_title">L'Excellence à chaque <em>couture</em></h2>
-    <div class="ornament"><div class="ornament-diamond"></div></div>
-  </div>
+<!-- MARQUEE -->
+<div class="mstrip"><div class="mtrack" id="mT"></div></div>
 
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <span class="service-icon">✦</span>
-      <p class="service-name" data-key="s1_name">Modèles Sur Mesure</p>
-      <p class="service-desc" data-key="s1_desc">Chaque création naît d'une vision unique, façonnée pour sublimer votre silhouette et votre personnalité.</p>
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="sv-lay">
+    <div class="sv-intro rvl">
+      <p class="stag" data-k="s0">Savoir-Faire</p>
+      <h2 class="stitl" data-k="s1">L'excellence<br>à chaque <em>couture</em></h2>
+      <div class="div"><div class="dline"></div><div class="dgem"></div><div class="dline"></div></div>
+      <p data-k="s2" style="font-family:'Playfair Display',serif;font-style:italic;font-size:16px;line-height:1.9;color:var(--muted);">De la première esquisse à la dernière broderie, chaque création porte l'âme de l'artisanat marocain.</p>
     </div>
-    <div class="service-card reveal">
-      <span class="service-icon">✧</span>
-      <p class="service-name" data-key="s2_name">Stylisme & Design</p>
-      <p class="service-desc" data-key="s2_desc">Un regard créatif qui fusionne l'esthétique marocaine traditionnelle avec les codes de la mode contemporaine.</p>
-    </div>
-    <div class="service-card reveal">
-      <span class="service-icon">◈</span>
-      <p class="service-name" data-key="s3_name">Modélisme</p>
-      <p class="service-desc" data-key="s3_desc">La précision technique au service de la beauté. Des patrons élaborés avec rigueur pour une coupe parfaite.</p>
-    </div>
-    <div class="service-card reveal">
-      <span class="service-icon">❖</span>
-      <p class="service-name" data-key="s4_name">Haute Couture</p>
-      <p class="service-desc" data-key="s4_desc">Le summum de l'artisanat vestimentaire. Des pièces d'exception confectionnées à la main avec des matières nobles.</p>
-    </div>
-    <div class="service-card reveal">
-      <span class="service-icon">✒</span>
-      <p class="service-name" data-key="s5_name">Croquis de Mode</p>
-      <p class="service-desc" data-key="s5_desc">L'idée prend vie sur le papier avant de s'épanouir en tissu. Des illustrations de mode à la finesse remarquable.</p>
+    <div class="sv-list">
+      <div class="srow rv"><span class="snum">01</span><div class="sbody"><div class="sname"><span data-k="s1n">Modèles Sur Mesure</span><i>✦</i></div><p class="sdesc" data-k="s1d">Chaque silhouette mérite une création pensée pour elle seule — des vêtements qui épousent votre morphologie et votre essence.</p></div></div>
+      <div class="srow rv"><span class="snum">02</span><div class="sbody"><div class="sname"><span data-k="s2n">Stylisme & Design</span><i>◈</i></div><p class="sdesc" data-k="s2d">Un regard créatif qui tisse la tradition marocaine aux courants de la mode internationale contemporaine.</p></div></div>
+      <div class="srow rv"><span class="snum">03</span><div class="sbody"><div class="sname"><span data-k="s3n">Modélisme</span><i>❧</i></div><p class="sdesc" data-k="s3d">La rigueur technique comme fondation de la beauté — des patrons élaborés avec précision pour une coupe parfaite.</p></div></div>
+      <div class="srow rv"><span class="snum">04</span><div class="sbody"><div class="sname"><span data-k="s4n">Confection Haute Couture</span><i>✧</i></div><p class="sdesc" data-k="s4d">Des pièces d'exception entièrement confectionnées à la main, avec les matières les plus nobles et les broderies les plus fines.</p></div></div>
+      <div class="srow rv"><span class="snum">05</span><div class="sbody"><div class="sname"><span data-k="s5n">Croquis de Mode</span><i>✒</i></div><p class="sdesc" data-k="s5d">Des illustrations de mode aux lines délicates qui donnent vie aux idées avant même que le tissu ne soit touché.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
-<section id="galerie" class="gallery">
-  <div class="section-header reveal">
-    <span class="section-tag" data-key="gallery_tag">Portfolio</span>
-    <h2 class="section-title" data-key="gallery_title">Nos <em>Créations</em></h2>
-    <div class="ornament"><div class="ornament-diamond"></div></div>
+<section id="gallery" class="sec">
+  <div class="g-head rv">
+    <div>
+      <p class="stag" data-k="g0">Portfolio</p>
+      <h2 class="stitl" data-k="g1">Nos <em>Créations</em></h2>
+    </div>
+    <div class="g-filters">
+      <button class="flt on" data-f="all"     data-k="f0">Tout</button>
+      <button class="flt"    data-f="couture"  data-k="f1">Couture</button>
+      <button class="flt"    data-f="bridal"   data-k="f2">Mariée</button>
+      <button class="flt"    data-f="sketch"   data-k="f3">Croquis</button>
+    </div>
   </div>
-
-  <div class="gallery-filter reveal">
-    <button class="filter-btn active" data-filter="all" data-key="filter_all">Tout</button>
-    <button class="filter-btn" data-filter="couture" data-key="filter_couture">Haute Couture</button>
-    <button class="filter-btn" data-filter="bridal" data-key="filter_bridal">Mariée</button>
-    <button class="filter-btn" data-filter="sketch" data-key="filter_sketch">Croquis</button>
-  </div>
-
-  <div class="gallery-masonry" id="galleryGrid">
-    <div class="gallery-item" data-cat="couture" onclick="openLightbox(this)">
-      <img src="image1.jpeg" alt="Création Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label1">Broderie Traditionnelle</span></div>
-    </div>
-    <div class="gallery-item" data-cat="bridal" onclick="openLightbox(this)">
-      <img src="image6.jpeg" alt="Robe de Mariée Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label2">Robe de Mariée</span></div>
-    </div>
-    <div class="gallery-item" data-cat="couture" onclick="openLightbox(this)">
-      <img src="image3.jpeg" alt="Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label3">Caftan Moderne</span></div>
-    </div>
-    <div class="gallery-item" data-cat="couture" onclick="openLightbox(this)">
-      <img src="image4.jpeg" alt="Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label4">Collection Sahara</span></div>
-    </div>
-    <div class="gallery-item" data-cat="bridal" onclick="openLightbox(this)">
-      <img src="image8.jpeg" alt="Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label5">Couture de Mariée</span></div>
-    </div>
-    <div class="gallery-item" data-cat="couture" onclick="openLightbox(this)">
-      <img src="image5.jpeg" alt="Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label6">Prêt-à-Porter Luxe</span></div>
-    </div>
-    <div class="gallery-item" data-cat="couture" onclick="openLightbox(this)">
-      <img src="image2.jpeg" alt="Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label7">Détail Couture</span></div>
-    </div>
-    <div class="gallery-item" data-cat="sketch" onclick="openLightbox(this)">
-      <img src="image10.jpeg" alt="Croquis Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label8">Croquis Création</span></div>
-    </div>
-    <div class="gallery-item" data-cat="couture" onclick="openLightbox(this)">
-      <img src="image9.jpeg" alt="Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label9">Broderie Sfifa</span></div>
-    </div>
-    <div class="gallery-item" data-cat="sketch" onclick="openLightbox(this)">
-      <img src="image11.jpeg" alt="Croquis Lalla Cooture" loading="lazy">
-      <div class="gallery-item-overlay"><span class="gallery-item-label" data-key="gal_label10">Dessin de Mode</span></div>
-    </div>
+  <div class="gmason">
+    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="image1.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl1">Broderie Traditionnelle</span></div></div>
+    <div class="gi" data-cat="bridal"  onclick="oLb(this)"><img src="image6.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl2">Robe de Mariée</span></div></div>
+    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="image3.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl3">Caftan Revisité</span></div></div>
+    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="image4.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl4">Collection Sahara</span></div></div>
+    <div class="gi" data-cat="bridal"  onclick="oLb(this)"><img src="image8.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl5">Couture de Mariée</span></div></div>
+    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="image5.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl6">Luxe Prêt-à-Porter</span></div></div>
+    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="image2.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl7">Détail de Couture</span></div></div>
+    <div class="gi" data-cat="sketch"  onclick="oLb(this)"><img src="image10.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl8">Croquis Atelier</span></div></div>
+    <div class="gi" data-cat="couture" onclick="oLb(this)"><img src="image9.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl9">Broderie Sfifa</span></div></div>
+    <div class="gi" data-cat="sketch"  onclick="oLb(this)"><img src="image11.jpeg" loading="lazy" alt=""><div class="gov"><span class="glbl" data-k="gl10">Dessin de Mode</span></div></div>
   </div>
 </section>
 
 <!-- ATELIER -->
-<section id="atelier" class="atelier">
-  <div class="atelier-visual">
-    <img src="image10.jpeg" alt="Atelier Lalla Cooture">
-    <div class="atelier-visual-overlay"></div>
-  </div>
-  <div class="atelier-content">
-    <span class="section-tag" data-key="atelier_tag">Notre Univers</span>
-    <h2 class="section-title" data-key="atelier_title">L'<em>Atelier</em><br>Lalla Cooture</h2>
-    <p class="atelier-text" data-key="atelier_text">Née d'une passion profonde pour l'artisanat marocain, Lalla Cooture est un atelier de création où tradition et innovation se rencontrent. Chaque fil raconte une histoire, chaque broderie célèbre un héritage millénaire revisité pour la femme d'aujourd'hui.</p>
-    <p class="atelier-text" data-key="atelier_text2">De la conception du croquis à la confection finale, chaque étape est réalisée avec la plus grande attention aux détails, garantissant des pièces d'une qualité exceptionnelle.</p>
-    <a href="#contact" class="btn-primary" style="width:fit-content"><span data-key="atelier_cta">Nous Contacter</span></a>
-    <div class="atelier-stats reveal">
-      <div class="stat">
-        <span class="stat-number">100%</span>
-        <span class="stat-label" data-key="stat1">Sur Mesure</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">✦</span>
-        <span class="stat-label" data-key="stat2">Haute Couture</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">5+</span>
-        <span class="stat-label" data-key="stat3">Années d'Art</span>
-      </div>
+<section id="atelier">
+  <div class="atimg rvl"><img src="image10.jpeg" alt="Atelier Lalla Cooture"></div>
+  <div class="atbody">
+    <p class="stag" data-k="a0">Notre Univers</p>
+    <h2 class="stitl" data-k="a1">L'<em>Atelier</em><br>Lalla Cooture</h2>
+    <div class="div" style="margin:22px 0"><div class="dline"></div><div class="dgem"></div><div class="dline"></div></div>
+    <p class="atp" data-k="a2">Née d'une passion profonde pour l'artisanat marocain, Lalla Cooture est un espace de création où héritage et modernité se rencontrent avec élégance.</p>
+    <p class="atp" data-k="a3">Chaque fil raconte une histoire, chaque broderie honore un patrimoine millénaire, sublimé pour la femme d'aujourd'hui.</p>
+    <div class="stats">
+      <div class="stb"><span class="stn">100%</span><span class="stl" data-k="a4">Sur Mesure</span></div>
+      <div class="stb"><span class="stn">✦</span><span class="stl" data-k="a5">Haute Couture</span></div>
+      <div class="stb"><span class="stn">5+</span><span class="stl" data-k="a6">Ans de Création</span></div>
     </div>
+    <a href="#contact" class="btn btn-dk" style="width:fit-content"><span data-k="a7">Prendre Rendez-vous</span></a>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact pattern-bg">
-  <div class="section-header reveal">
-    <span class="section-tag" data-key="contact_tag">Nous Rejoindre</span>
-    <h2 class="section-title" data-key="contact_title">Créons <em>Ensemble</em></h2>
-    <div class="ornament"><div class="ornament-diamond"></div></div>
+<section id="contact" class="sec">
+  <div style="text-align:center" class="rv">
+    <p class="stag" style="justify-content:center" data-k="c0">Nous Rejoindre</p>
+    <h2 class="stitl" data-k="c1">Créons <em>Ensemble</em></h2>
+    <div class="div"><div class="dline"></div><div class="dgem"></div><div class="dline"></div></div>
   </div>
-
-  <div class="contact-grid">
-    <div class="contact-info reveal">
-      <h3 data-key="contact_subtitle">Votre vision, <em>notre création</em></h3>
-      <div class="contact-detail">
-        <span class="contact-detail-icon">✦</span>
-        <div class="contact-detail-text">
-          <strong data-key="contact_loc_label">Atelier</strong>
-          <span data-key="contact_loc">Marrakech, Maroc</span>
-        </div>
-      </div>
-      <div class="contact-detail">
-        <span class="contact-detail-icon">✉</span>
-        <div class="contact-detail-text">
-          <strong data-key="contact_insta_label">Instagram</strong>
-          <span>@lallacooture</span>
-        </div>
-      </div>
-      <div class="contact-detail">
-        <span class="contact-detail-icon">◈</span>
-        <div class="contact-detail-text">
-          <strong data-key="contact_hours_label">Disponibilité</strong>
-          <span data-key="contact_hours">Sur rendez-vous — Lundi au Samedi</span>
-        </div>
-      </div>
-      <div class="social-links">
-        <a href="https://instagram.com/lallacooture" target="_blank" class="social-link">📷 Instagram</a>
-      </div>
+  <div class="c-wrap">
+    <div class="cl rvl">
+      <h3 data-k="c2">Votre vision,<br><em>notre création</em></h3>
+      <div class="citem"><div class="cico">✦</div><div class="ctxt"><strong data-k="c3">Atelier</strong><span data-k="c4">Marrakech, Maroc</span></div></div>
+      <div class="citem"><div class="cico">◈</div><div class="ctxt"><strong data-k="c5">Disponibilité</strong><span data-k="c6">Sur rendez-vous · Lundi – Samedi</span></div></div>
+      <div class="citem"><div class="cico">✧</div><div class="ctxt"><strong>Instagram</strong><span>@lallacooture</span></div></div>
+      <a href="https://instagram.com/lallacooture" target="_blank" class="igbtn">📷 &nbsp;<span data-k="c7">Suivre sur Instagram</span></a>
     </div>
-
-    <div class="reveal">
-      <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-group">
-          <label class="form-label" data-key="form_name">Votre Nom</label>
-          <input type="text" class="form-input" placeholder="—" required>
+    <div class="rv">
+      <form class="cform" onsubmit="hdSend(event)">
+        <div class="frow">
+          <div class="fgrp"><label class="flbl" data-k="f_n">Nom</label><input type="text" class="finp" required></div>
+          <div class="fgrp"><label class="flbl" data-k="f_e">Email</label><input type="email" class="finp" required></div>
         </div>
-        <div class="form-group">
-          <label class="form-label" data-key="form_email">Email</label>
-          <input type="email" class="form-input" placeholder="—" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" data-key="form_service">Service Souhaité</label>
-          <input type="text" class="form-input" placeholder="—">
-        </div>
-        <div class="form-group">
-          <label class="form-label" data-key="form_message">Votre Message</label>
-          <textarea class="form-textarea" placeholder="—" required></textarea>
-        </div>
-        <button type="submit" class="btn-primary"><span data-key="form_submit">Envoyer</span></button>
+        <div class="fgrp"><label class="flbl" data-k="f_s">Service Souhaité</label><input type="text" class="finp"></div>
+        <div class="fgrp"><label class="flbl" data-k="f_m">Message</label><textarea class="ftxt" required></textarea></div>
+        <button type="submit" class="btn btn-dk"><span data-k="f_b">Envoyer</span></button>
       </form>
     </div>
   </div>
@@ -1054,224 +392,188 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><em>Lalla</em> Cooture</div>
-  <p class="footer-copy" data-key="footer_copy">© 2025 Lalla Cooture — Tous droits réservés</p>
-  <p class="footer-copy" style="font-size:9px; letter-spacing:2px; color:var(--gold-dim)">HAUTE COUTURE MAROCAINE</p>
+  <div class="fbrand"><em>Lalla</em> Cooture</div>
+  <p class="fcp" data-k="fp">© 2025 Lalla Cooture — Tous droits réservés</p>
+  <p class="fcp-loc">HAUTE COUTURE · Marrakech</p>
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightboxImg" src="" alt="">
+<div class="lb" id="lb" onclick="cLb()">
+  <button class="lbx" onclick="cLb()">✕</button>
+  <img id="lbImg" src="" alt="">
 </div>
 
 <script>
-// ============ TRANSLATIONS ============
-const translations = {
-  fr: {
-    nav_home: 'Accueil', nav_services: 'Services', nav_gallery: 'Galerie',
-    nav_atelier: 'Atelier', nav_contact: 'Contact',
-    hero_eyebrow: 'Maison de Couture — Marrakech',
-    hero_title1: 'Lalla', hero_title2: 'Cooture',
-    hero_subtitle: 'Haute Couture Marocaine',
-    hero_desc: "L'art de la couture marocaine réinventé. Chaque pièce est une œuvre unique, tissée d'héritage et de modernité.",
-    hero_cta1: 'Découvrir', hero_cta2: 'Prendre Rendez-vous',
-    services_tag: 'Nos Savoir-Faire',
-    services_title: "L'Excellence à chaque couture",
-    s1_name: 'Modèles Sur Mesure', s1_desc: "Chaque création naît d'une vision unique, façonnée pour sublimer votre silhouette.",
-    s2_name: 'Stylisme & Design', s2_desc: "Un regard créatif qui fusionne l'esthétique marocaine avec la mode contemporaine.",
-    s3_name: 'Modélisme', s3_desc: "La précision technique au service de la beauté. Des patrons élaborés avec rigueur.",
-    s4_name: 'Haute Couture', s4_desc: "Des pièces d'exception confectionnées à la main avec des matières nobles.",
-    s5_name: 'Croquis de Mode', s5_desc: "Des illustrations de mode à la finesse remarquable qui donnent vie aux créations.",
-    gallery_tag: 'Portfolio', gallery_title: 'Nos Créations',
-    filter_all: 'Tout', filter_couture: 'Haute Couture', filter_bridal: 'Mariée', filter_sketch: 'Croquis',
-    gal_label1: 'Broderie Traditionnelle', gal_label2: 'Robe de Mariée', gal_label3: 'Caftan Moderne',
-    gal_label4: 'Collection Sahara', gal_label5: 'Couture de Mariée', gal_label6: 'Prêt-à-Porter Luxe',
-    gal_label7: 'Détail Couture', gal_label8: 'Croquis Création', gal_label9: 'Broderie Sfifa', gal_label10: 'Dessin de Mode',
-    atelier_tag: 'Notre Univers', atelier_title: "L'Atelier Lalla Cooture",
-    atelier_text: "Née d'une passion pour l'artisanat marocain, Lalla Cooture est un atelier où tradition et innovation se rencontrent. Chaque fil raconte une histoire, chaque broderie célèbre un héritage millénaire revisité.",
-    atelier_text2: "De la conception du croquis à la confection finale, chaque étape est réalisée avec la plus grande attention aux détails.",
-    atelier_cta: 'Nous Contacter',
-    stat1: 'Sur Mesure', stat2: 'Haute Couture', stat3: "Années d'Art",
-    contact_tag: 'Nous Rejoindre', contact_title: 'Créons Ensemble',
-    contact_subtitle: 'Votre vision, notre création',
-    contact_loc_label: 'Atelier', contact_loc: 'Marrakech, Maroc',
-    contact_insta_label: 'Instagram',
-    contact_hours_label: 'Disponibilité', contact_hours: 'Sur rendez-vous — Lundi au Samedi',
-    form_name: 'Votre Nom', form_email: 'Email', form_service: 'Service Souhaité',
-    form_message: 'Votre Message', form_submit: 'Envoyer',
-    footer_copy: '© 2025 Lalla Cooture — Tous droits réservés'
+/* cursor */
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+document.addEventListener('mousemove',e=>{
+  cur.style.left=curR.style.left=e.clientX+'px';
+  cur.style.top=curR.style.top=e.clientY+'px';
+});
+
+/* theme */
+let thm='light';
+function toggleThm(){
+  thm=thm==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',thm);
+  document.getElementById('tBtn').textContent=thm==='dark'?'☀':'☽';
+}
+
+/* mobile */
+function togMob(){document.getElementById('mobM').classList.toggle('open');}
+function closM(){document.getElementById('mobM').classList.remove('open');}
+
+/* translations */
+const T={
+  fr:{
+    n0:'Accueil',n1:'Services',n2:'Galerie',n3:'Atelier',n4:'Contact',
+    t0:'Maison de Couture · Marrakech',t1:'Lalla',t2:'Cooture',
+    t3:'Haute Couture Marocaine',
+    t4:"L'art de la couture marocaine réinventé avec grâce. Chaque pièce naît du fil, du geste et de la mémoire.",
+    t5:'Découvrir',t6:'Rendez-vous',
+    s0:'Savoir-Faire',s1:"L'excellence à chaque couture",
+    s2:"De la première esquisse à la dernière broderie, chaque création porte l'âme de l'artisanat marocain.",
+    s1n:'Modèles Sur Mesure',s1d:"Chaque silhouette mérite une création pensée pour elle seule.",
+    s2n:'Stylisme & Design',s2d:"Un regard créatif qui tisse la tradition marocaine à la mode contemporaine.",
+    s3n:'Modélisme',s3d:"La rigueur technique comme fondation de la beauté.",
+    s4n:'Confection Haute Couture',s4d:"Des pièces d'exception entièrement confectionnées à la main.",
+    s5n:'Croquis de Mode',s5d:"Des illustrations de mode qui donnent vie aux idées.",
+    g0:'Portfolio',g1:'Nos Créations',
+    f0:'Tout',f1:'Couture',f2:'Mariée',f3:'Croquis',
+    gl1:'Broderie Traditionnelle',gl2:'Robe de Mariée',gl3:'Caftan Revisité',
+    gl4:'Collection Sahara',gl5:'Couture de Mariée',gl6:'Luxe Prêt-à-Porter',
+    gl7:'Détail de Couture',gl8:'Croquis Atelier',gl9:'Broderie Sfifa',gl10:'Dessin de Mode',
+    a0:'Notre Univers',a1:"L'Atelier Lalla Cooture",
+    a2:"Née d'une passion profonde pour l'artisanat marocain, Lalla Cooture est un espace de création où héritage et modernité se rencontrent.",
+    a3:"Chaque fil raconte une histoire, chaque broderie honore un patrimoine millénaire, sublimé pour la femme d'aujourd'hui.",
+    a4:'Sur Mesure',a5:'Haute Couture',a6:"Ans de Création",a7:'Prendre Rendez-vous',
+    c0:'Nous Rejoindre',c1:'Créons Ensemble',c2:'Votre vision, notre création',
+    c3:'Atelier',c4:'Marrakech, Maroc',c5:'Disponibilité',c6:'Sur rendez-vous · Lundi – Samedi',
+    c7:'Suivre sur Instagram',
+    f_n:'Nom',f_e:'Email',f_s:'Service Souhaité',f_m:'Message',f_b:'Envoyer',
+    fp:'© 2025 Lalla Cooture — Tous droits réservés',
+    mq:['Haute Couture','Sur Mesure','Marrakech','Modélisme','Stylisme','Broderie','Élégance','Savoir-Faire']
   },
-  en: {
-    nav_home: 'Home', nav_services: 'Services', nav_gallery: 'Gallery',
-    nav_atelier: 'Atelier', nav_contact: 'Contact',
-    hero_eyebrow: 'Fashion House — Marrakech',
-    hero_title1: 'Lalla', hero_title2: 'Cooture',
-    hero_subtitle: 'Moroccan Haute Couture',
-    hero_desc: "Moroccan couture reimagined. Every piece is a unique work of art, woven from heritage and modernity.",
-    hero_cta1: 'Discover', hero_cta2: 'Book Appointment',
-    services_tag: 'Our Expertise',
-    services_title: "Excellence in every stitch",
-    s1_name: 'Made to Measure', s1_desc: "Every creation is born from a unique vision, crafted to enhance your silhouette and personality.",
-    s2_name: 'Styling & Design', s2_desc: "A creative eye that fuses traditional Moroccan aesthetics with contemporary fashion codes.",
-    s3_name: 'Pattern Making', s3_desc: "Technical precision in service of beauty. Patterns crafted with the utmost rigor for a perfect cut.",
-    s4_name: 'Haute Couture', s4_desc: "Exceptional pieces handcrafted using noble materials and centuries-old techniques.",
-    s5_name: 'Fashion Sketches', s5_desc: "Exquisitely detailed fashion illustrations that bring creative visions to life on paper.",
-    gallery_tag: 'Portfolio', gallery_title: 'Our Creations',
-    filter_all: 'All', filter_couture: 'Haute Couture', filter_bridal: 'Bridal', filter_sketch: 'Sketches',
-    gal_label1: 'Traditional Embroidery', gal_label2: 'Bridal Gown', gal_label3: 'Modern Caftan',
-    gal_label4: 'Sahara Collection', gal_label5: 'Bridal Couture', gal_label6: 'Luxury Ready-to-Wear',
-    gal_label7: 'Couture Detail', gal_label8: 'Design Sketch', gal_label9: 'Sfifa Embroidery', gal_label10: 'Fashion Drawing',
-    atelier_tag: 'Our World', atelier_title: "The Lalla Cooture Atelier",
-    atelier_text: "Born from a deep passion for Moroccan craftsmanship, Lalla Cooture is a creative atelier where tradition and innovation meet. Every thread tells a story, every embroidery celebrates a timeless heritage.",
-    atelier_text2: "From the first sketch to the final garment, every step is carried out with the greatest attention to detail, ensuring exceptional quality.",
-    atelier_cta: 'Contact Us',
-    stat1: 'Bespoke', stat2: 'Haute Couture', stat3: 'Years of Art',
-    contact_tag: 'Get in Touch', contact_title: 'Create Together',
-    contact_subtitle: 'Your vision, our creation',
-    contact_loc_label: 'Atelier', contact_loc: 'Marrakech, Morocco',
-    contact_insta_label: 'Instagram',
-    contact_hours_label: 'Availability', contact_hours: 'By appointment — Monday to Saturday',
-    form_name: 'Your Name', form_email: 'Email', form_service: 'Desired Service',
-    form_message: 'Your Message', form_submit: 'Send',
-    footer_copy: '© 2025 Lalla Cooture — All rights reserved'
+  en:{
+    n0:'Home',n1:'Services',n2:'Gallery',n3:'Atelier',n4:'Contact',
+    t0:'Fashion House · Marrakech',t1:'Lalla',t2:'Cooture',
+    t3:'Moroccan Haute Couture',
+    t4:"Moroccan couture art reimagined with grace. Every piece is born from thread, gesture and memory.",
+    t5:'Discover',t6:'Book Now',
+    s0:'Expertise',s1:"Excellence in every stitch",
+    s2:"From the first sketch to the last embroidery, each creation carries the soul of Moroccan craftsmanship.",
+    s1n:'Made to Measure',s1d:"Every silhouette deserves a creation designed for it alone.",
+    s2n:'Styling & Design',s2d:"A creative eye weaving Moroccan tradition with contemporary fashion.",
+    s3n:'Pattern Making',s3d:"Technical precision as the foundation of beauty.",
+    s4n:'Haute Couture',s4d:"Exceptional pieces entirely handcrafted with the noblest materials.",
+    s5n:'Fashion Sketches',s5d:"Delicate fashion illustrations that bring ideas to life.",
+    g0:'Portfolio',g1:'Our Creations',
+    f0:'All',f1:'Couture',f2:'Bridal',f3:'Sketches',
+    gl1:'Traditional Embroidery',gl2:'Bridal Gown',gl3:'Modern Caftan',
+    gl4:'Sahara Collection',gl5:'Bridal Couture',gl6:'Luxury Ready-to-Wear',
+    gl7:'Couture Detail',gl8:'Atelier Sketch',gl9:'Sfifa Embroidery',gl10:'Fashion Drawing',
+    a0:'Our World',a1:"The Lalla Cooture Atelier",
+    a2:"Born from a deep passion for Moroccan craftsmanship, Lalla Cooture is a creative space where heritage and modernity meet.",
+    a3:"Every thread tells a story, every embroidery honours a centuries-old heritage, reimagined for the woman of today.",
+    a4:'Bespoke',a5:'Haute Couture',a6:'Years of Art',a7:'Book an Appointment',
+    c0:'Get in Touch',c1:'Create Together',c2:'Your vision, our creation',
+    c3:'Atelier',c4:'Marrakech, Morocco',c5:'Availability',c6:'By appointment · Mon – Sat',
+    c7:'Follow on Instagram',
+    f_n:'Name',f_e:'Email',f_s:'Desired Service',f_m:'Message',f_b:'Send',
+    fp:'© 2025 Lalla Cooture — All rights reserved',
+    mq:['Haute Couture','Bespoke','Marrakech','Pattern Making','Styling','Embroidery','Elegance','Craftsmanship']
   },
-  ar: {
-    nav_home: 'الرئيسية', nav_services: 'خدماتنا', nav_gallery: 'المعرض',
-    nav_atelier: 'الأتيليه', nav_contact: 'اتصل بنا',
-    hero_eyebrow: 'دار الأزياء — مراكش',
-    hero_title1: 'لالة', hero_title2: 'كوتور',
-    hero_subtitle: 'الخياطة المغربية الراقية',
-    hero_desc: "فن الخياطة المغربية بأسلوب عصري. كل قطعة تحفة فنية فريدة تنسج التراث والحداثة معاً.",
-    hero_cta1: 'اكتشف', hero_cta2: 'احجز موعداً',
-    services_tag: 'خبراتنا',
-    services_title: "التميز في كل غرزة",
-    s1_name: 'التفصيل على المقاس', s1_desc: "كل إبداع يولد من رؤية فريدة، مصمم لإبراز جمالك الشخصي.",
-    s2_name: 'التصميم والأسلوب', s2_desc: "نظرة إبداعية تمزج بين الجماليات المغربية التقليدية وأزياء العصر الحديث.",
-    s3_name: 'رسم الباترون', s3_desc: "الدقة التقنية في خدمة الجمال. قوالب محكمة الصنع لقصة مثالية.",
-    s4_name: 'الخياطة الراقية', s4_desc: "قطع استثنائية تُخاط يدوياً باستخدام أشرف المواد وأرقى الأساليب.",
-    s5_name: 'رسوم الأزياء', s5_desc: "رسوم أزياء بالغة الدقة تمنح الحياة للأفكار الإبداعية على الورق.",
-    gallery_tag: 'معرض الأعمال', gallery_title: 'إبداعاتنا',
-    filter_all: 'الكل', filter_couture: 'خياطة راقية', filter_bridal: 'عروس', filter_sketch: 'رسوم',
-    gal_label1: 'تطريز تقليدي', gal_label2: 'فستان العروس', gal_label3: 'قفطان عصري',
-    gal_label4: 'مجموعة الصحراء', gal_label5: 'خياطة العروس', gal_label6: 'أزياء فاخرة',
-    gal_label7: 'تفاصيل الخياطة', gal_label8: 'رسم التصميم', gal_label9: 'تطريز السفيفة', gal_label10: 'رسم الأزياء',
-    atelier_tag: 'عالمنا', atelier_title: "أتيليه لالة كوتور",
-    atelier_text: "وُلد لالة كوتور من شغف عميق بالحرف المغربية، أتيليه إبداعي تلتقي فيه الأصالة والابتكار. كل خيط يحكي قصة، وكل تطريز يحتفل بإرث عريق.",
-    atelier_text2: "من الرسمة الأولى إلى اللمسة الأخيرة، كل خطوة تُنجز بأقصى درجات الاهتمام بالتفاصيل لضمان الجودة الاستثنائية.",
-    atelier_cta: 'تواصل معنا',
-    stat1: 'على المقاس', stat2: 'خياطة راقية', stat3: 'سنوات من الفن',
-    contact_tag: 'تواصل معنا', contact_title: 'لنبدع معاً',
-    contact_subtitle: 'رؤيتك، إبداعنا',
-    contact_loc_label: 'الأتيليه', contact_loc: 'مراكش، المغرب',
-    contact_insta_label: 'إنستغرام',
-    contact_hours_label: 'التوفر', contact_hours: 'بموعد مسبق — الاثنين إلى السبت',
-    form_name: 'اسمك', form_email: 'البريد الإلكتروني', form_service: 'الخدمة المطلوبة',
-    form_message: 'رسالتك', form_submit: 'إرسال',
-    footer_copy: '© 2025 لالة كوتور — جميع الحقوق محفوظة'
+  ar:{
+    n0:'الرئيسية',n1:'خدماتنا',n2:'المعرض',n3:'الأتيليه',n4:'تواصل',
+    t0:'دار الأزياء · مراكش',t1:'لالة',t2:'كوتور',
+    t3:'الخياطة المغربية الراقية',
+    t4:"فن الخياطة المغربية يُعاد اختراعه بأناقة. كل قطعة تولد من الخيط والإيماءة والذاكرة.",
+    t5:'اكتشف',t6:'احجز موعدًا',
+    s0:'خبراتنا',s1:"التميز في كل غرزة",
+    s2:"من أول رسمة إلى آخر تطريزة، كل إبداع يحمل روح الحرفة المغربية.",
+    s1n:'التفصيل على المقاس',s1d:"كل تناسق يستحق تصميمًا خُصِّص له وحده.",
+    s2n:'التصميم والأسلوب',s2d:"نظرة إبداعية تنسج التقاليد المغربية مع الموضة الدولية.",
+    s3n:'رسم الباترون',s3d:"الدقة التقنية أساس الجمال وقصة مثالية.",
+    s4n:'الخياطة الراقية',s4d:"قطع استثنائية مخيوطة يدويًا بالكامل.",
+    s5n:'رسوم الأزياء',s5d:"رسوم بخطوط رفيعة تمنح الأفكار حياة.",
+    g0:'معرض الأعمال',g1:'إبداعاتنا',
+    f0:'الكل',f1:'خياطة',f2:'عروس',f3:'رسوم',
+    gl1:'تطريز تقليدي',gl2:'فستان عروس',gl3:'قفطان عصري',
+    gl4:'مجموعة الصحراء',gl5:'خياطة العروس',gl6:'أزياء فاخرة',
+    gl7:'تفاصيل الخياطة',gl8:'رسمة أتيليه',gl9:'تطريز السفيفة',gl10:'رسم الأزياء',
+    a0:'عالمنا',a1:"أتيليه لالة كوتور",
+    a2:"وُلد لالة كوتور من شغف عميق بالحرف المغربية، فضاء إبداعي تلتقي فيه الأصالة والحداثة.",
+    a3:"كل خيط يحكي قصة، وكل تطريز يُكرِّم إرثًا يمتد لقرون.",
+    a4:'على المقاس',a5:'خياطة راقية',a6:'سنوات من الإبداع',a7:'احجز موعدًا',
+    c0:'تواصل معنا',c1:'لنبدع معًا',c2:'رؤيتك، إبداعنا',
+    c3:'الأتيليه',c4:'مراكش، المغرب',c5:'التوفر',c6:'بموعد مسبق · الاثنين – السبت',
+    c7:'تابعنا على إنستغرام',
+    f_n:'الاسم',f_e:'البريد الإلكتروني',f_s:'الخدمة المطلوبة',f_m:'رسالتك',f_b:'إرسال',
+    fp:'© 2025 لالة كوتور — جميع الحقوق محفوظة',
+    mq:['خياطة راقية','على المقاس','مراكش','باترون','تصميم','تطريز','أناقة','حرفة']
   }
 };
 
-let currentLang = 'fr';
-let currentTheme = 'dark';
-
-function setLang(lang) {
-  currentLang = lang;
-  const t = translations[lang];
-  
-  document.querySelectorAll('[data-key]').forEach(el => {
-    if (t[el.dataset.key]) el.textContent = t[el.dataset.key];
+let lang='fr';
+function setL(l){
+  lang=l;
+  const t=T[l];
+  document.querySelectorAll('[data-k]').forEach(el=>{
+    if(t[el.dataset.k]!==undefined) el.textContent=t[el.dataset.k];
   });
-
-  // RTL for Arabic
-  document.documentElement.lang = lang;
-  document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  
-  // Active button
-  ['fr','en','ar'].forEach(l => {
-    document.getElementById('btn-' + l).classList.toggle('active', l === lang);
-  });
+  document.documentElement.lang=l;
+  document.body.dir=l==='ar'?'rtl':'ltr';
+  ['fr','en','ar'].forEach(x=>document.getElementById('b'+x).classList.toggle('on',x===l));
+  buildMq(t.mq);
 }
 
-function toggleTheme() {
-  currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  document.getElementById('themeBtn').textContent = currentTheme === 'dark' ? '☽' : '☀';
+function buildMq(words){
+  const el=document.getElementById('mT');
+  const chunk=words.map(w=>`<span class="mitem">${w}</span><span class="mdot">✦</span>`).join('');
+  el.innerHTML=(chunk+chunk+chunk+chunk);
 }
 
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-
-function closeMenu() {
-  document.getElementById('mobileMenu').classList.remove('open');
-}
-
-// Gallery filter
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    const filter = this.dataset.filter;
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      if (filter === 'all' || item.dataset.cat === filter) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
+/* gallery filter */
+document.querySelectorAll('.flt').forEach(b=>{
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.flt').forEach(x=>x.classList.remove('on'));
+    this.classList.add('on');
+    const f=this.dataset.f;
+    document.querySelectorAll('.gi').forEach(item=>{
+      item.style.display=f==='all'||item.dataset.cat===f?'block':'none';
     });
   });
 });
 
-// Lightbox
-function openLightbox(el) {
-  const img = el.querySelector('img');
-  document.getElementById('lightboxImg').src = img.src;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
+/* lightbox */
+function oLb(el){
+  document.getElementById('lbImg').src=el.querySelector('img').src;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
 }
-
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
+function cLb(){
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow='';
 }
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cLb();});
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeLightbox();
-});
+/* scroll reveal */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});
+},{threshold:.08});
+document.querySelectorAll('.rv,.rvl').forEach(el=>obs.observe(el));
 
-// Reveal on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Form submit
-function handleSubmit(e) {
+/* form */
+function hdSend(e){
   e.preventDefault();
-  const btn = e.target.querySelector('button[type="submit"] span');
-  const original = btn.textContent;
-  btn.textContent = '✓';
-  setTimeout(() => btn.textContent = original, 2000);
+  const s=e.target.querySelector('[data-k="f_b"]');
+  const o=s.textContent;
+  s.textContent='✓';
+  setTimeout(()=>s.textContent=o,2200);
 }
 
-// Smooth nav active state
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section[id]');
-  const scrollPos = window.scrollY + 100;
-  sections.forEach(section => {
-    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.style.color = link.getAttribute('href') === '#' + section.id ? 'var(--gold)' : '';
-      });
-    }
-  });
-});
+/* init */
+buildMq(T.fr.mq);
 </script>
 </body>
 </html>
